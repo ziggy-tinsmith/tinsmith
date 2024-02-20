@@ -4,13 +4,14 @@ import (
 	"testing"
 )
 
-func feature04ATester(t *testing.T, aa float64, mmOK float64) {
-	mm := feature04A(aa)
-	if !equalsFormatted(mm, mmOK, "%.0f") {
-		t.Errorf("The value 'mm' is incorrect (got: %v, expected: %v)!", mm, mmOK)
-	}
-}
+var (
+	feature04ANames      = []string{"M"}
+	feature04AAccuracies = []string{"%.0f"}
+	feature04ATypes      = []bool{true}
+)
 
 func Test01Feature04A(t *testing.T) {
-	feature04ATester(t, 40, 773)
+	arguments := map[string]interface{}{"A": 40}
+	expected := map[string]interface{}{"M": 773}
+	genericTester(t, feature04A(arguments), expected, feature04ANames, feature04AAccuracies, feature04ATypes)
 }
