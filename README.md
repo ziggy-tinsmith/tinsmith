@@ -13,3 +13,7 @@ Notes:
   * [Vuex and Typescript](https://codeburst.io/vuex-and-typescript-3427ba78cfa8)
   * [Vuex + TypeScript](https://dev.to/3vilarthas/vuex-typescript-m4j)
   * [Vuex with TypeScript: Tricks to Improve your Developer Experience](https://blog.e-mundo.de/post/vuex-with-typescript-tricks-to-improve-your-developer-experience)
+* Gimp
+  * Image -> Mode -> Grayscale
+  * Tools -> Transform Tools -> Perspective
+  * Colors -> Levels
