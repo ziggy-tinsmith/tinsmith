@@ -1,6 +1,6 @@
 # Tinsmith
 
-This code is based on an [old program](archive) found on a CASIO calculator and re-implemented as a [new web app](https://altermarkive.github.io/tinsmith/) with old-school HTML & JavaScript.
+This code is based on an [old program](archive) found on a CASIO calculator and re-implemented as a [new web app](https://ziggy-tinsmith.github.io/tinsmith/) with old-school HTML & JavaScript.
 
 Dictionary:
 
