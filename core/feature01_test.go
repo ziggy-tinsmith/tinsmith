@@ -1,25 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
-
-func equalsFormatted(value1, value2 float64, format string) bool {
-	return fmt.Sprintf(format, value1) == fmt.Sprintf(format, value2)
-}
-
-func equalsFormattedArray(value1, value2 []float64, format string) bool {
-	if len(value1) != len(value2) {
-		return false
-	}
-	for i := 0; i < len(value1); i++ {
-		if !equalsFormatted(value1[i], value1[i], format) {
-			return false
-		}
-	}
-	return true
-}
 
 func feature01Tester(t *testing.T, dd, rr, ss, ee, tt float64, sOK, ll1OK, ll2OK float64, pOK []float64, aOK float64) {
 	s, ll1, ll2, p, a := feature01(dd, rr, ss, ee, tt)
