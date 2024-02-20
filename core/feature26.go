@@ -25,9 +25,7 @@ func feature26(arguments map[string]interface{}) map[string]interface{} {
 	V = V + B
 	P := 2.0 * Z * math.Cos(theta*Rad)
 	L = L + P
-	//"%.f"1
 	result["S"] = 2.0 * math.Pi * r / (2.0 * T)
-	//"%.f"0
 	p1 := make([]interface{}, 0)
 	p2 := make([]interface{}, 0)
 	p1 = append(p1, math.Sqrt(math.Pow(V, 2.0)+math.Pow(L, 2.0)))
