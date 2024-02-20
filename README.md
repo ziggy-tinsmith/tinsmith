@@ -1,6 +1,6 @@
 # Tinsmith
 
-This code is based on a [program](archive) found on an old calculator.
+This code is based on a [old program](archive) found on a CASIO calculator and re-implemented as a [new web app](https://altermarkive.github.io/tinsmith/) with Go, TypeScript & Vue/Vuetify.
 
 Notes:
 
@@ -18,14 +18,29 @@ Notes:
   * [Vuex with TypeScript: Tricks to Improve your Developer Experience](https://blog.e-mundo.de/post/vuex-with-typescript-tricks-to-improve-your-developer-experience)
 
 
-Dictionary (https://unicode-table.com/en/):
+Dictionary:
 
 * Angle: ∠
 * Compass Opening: ∡
 * Diameter: ⌀
 * Radius: ⎋
-* Maximum: ⤒
-* Minimum: ⤓ 
+* Circumference: ◯
+* Maximum, Big(ger): ⤒
+* Minimum, Small(er): ⤓
 * Points: ⦙
+* Segments: ┇
 * Area: ▨
-* Miscellaneous: ⬒⬓⬔⬕⬖⬗⬘⬙⬚⬟⬡⬢⬥⬦⬬⬭⭙⨀⨁⨝⨭⨮⨲⩙⩡⫯⫰⫱⫶⦚⦜⦝⦡⧀⧁⧆⧈⧉⧟⧢⧦⧧⧺⧻⟊⟐⟓⟔⟕⟖⟗⟛⟟⟜⟤⟥⨳❖⨷⨻▢▨▧▩◐◑◒◓◔◕◠◡⟴⤞⤠⍈⍆⤝⤟⍇⍅⍐⍗⟷⇱⇲⇶∆∅⌖⌧⎅⎌⎉⎊⏙⏘⏢⑀⑄┆┇◰◱◲◳︗︘
+* Extra: ⬒
+* Seam: ⬓
+* Graduation: ⧻
+* Size, Length, Spacing, Distance, Difference, Offset: ⟷
+* Remainder: ⍆
+* Height: ⍐
+* Arc: ⌒
+* Chord: ⌓
+* Circular Sector: ◜
+* Insulation: ⧚
+* Parallel, Straight, Pipe: ∥
+* Diagonal: ⧄
+* Hole: ⚬
+* Volume: ⟐
