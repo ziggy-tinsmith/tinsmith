@@ -4,16 +4,26 @@ import (
 	"math"
 )
 
-func feature08B(dd, ii, tt float64) (rr2, rr11, rr12, bb, cc float64) {
+func feature08B(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "I", "T"})
+	if parameters == nil {
+		return nil
+	}
+	D := getParameter(parameters, "D")
+	I := getParameter(parameters, "I")
+	T := getParameter(parameters, "T")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	rr := dd / 2.0
-	r := rr - ii
-	pp := math.Pi / 180.0
-	aa := 360.0 / tt
-	rr2 = r
-	rr11 = rr
-	rr12 = rr + 6.0
-	bb = rr * aa * pp
-	cc = 2.0 * rr * math.Sin((aa/2.0)*Rad)
-	return
+	R := D / 2.0
+	r := R - I
+	P := math.Pi / 180.0
+	A := 360.0 / T
+	result["R2"] = r
+	result["R1"] = []interface{}{
+		R,
+		R + 6.0,
+	}
+	result["B"] = R * A * P
+	result["C"] = 2.0 * R * math.Sin((A/2.0)*Rad)
+	return result
 }

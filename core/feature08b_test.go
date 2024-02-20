@@ -4,25 +4,14 @@ import (
 	"testing"
 )
 
-func feature08BTester(t *testing.T, dd, ii, tt float64, rr2OK, rr11OK, rr12OK, bbOK, ccOK float64) {
-	rr2, rr11, rr12, bb, cc := feature08B(dd, ii, tt)
-	if !equalsFormatted(rr2, rr2OK, "%.0f") {
-		t.Errorf("The value 'rr2' is incorrect (got: %v, expected: %v)!", rr2, rr2OK)
-	}
-	if !equalsFormatted(rr11, rr11OK, "%.0f") {
-		t.Errorf("The value 'rr11' is incorrect (got: %v, expected: %v)!", rr11, rr11OK)
-	}
-	if !equalsFormatted(rr12, rr12OK, "%.0f") {
-		t.Errorf("The value 'rr12' is incorrect (got: %v, expected: %v)!", rr12, rr12OK)
-	}
-	if !equalsFormatted(bb, bbOK, "%.0f") {
-		t.Errorf("The value 'bb' is incorrect (got: %v, expected: %v)!", bb, bbOK)
-	}
-	if !equalsFormatted(cc, ccOK, "%.0f") {
-		t.Errorf("The value 'cc' is incorrect (got: %v, expected: %v)!", cc, ccOK)
-	}
-}
+var (
+	feature08BNames      = []string{"R2", "R1", "B", "C"}
+	feature08BAccuracies = []string{"%.0f", "%.0f", "%.0f", "%.0f"}
+	feature08BTypes      = []bool{true, false, true, true}
+)
 
 func Test01Feature08B(t *testing.T) {
-	feature08BTester(t, 200, 10, 16, 90, 100, 106, 39, 39)
+	arguments := map[string]interface{}{"D": 200, "I": 10, "T": 16}
+	expected := map[string]interface{}{"R2": 90, "R1": []interface{}{100, 106}, "B": 39, "C": 39}
+	genericTester(t, feature08B(arguments), expected, feature08BNames, feature08BAccuracies, feature08BTypes)
 }
