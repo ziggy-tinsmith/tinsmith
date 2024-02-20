@@ -1,7 +1,15 @@
 package main
 
-func feature08A(dd, ii, kk float64) (ggbb float64) {
-	r := dd / 2.0
-	ggbb = (r + ii) * (kk / r)
-	return
+func feature08A(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "I", "K"})
+	if parameters == nil {
+		return nil
+	}
+	D := getParameter(parameters, "D")
+	I := getParameter(parameters, "I")
+	K := getParameter(parameters, "K")
+	result := make(map[string]interface{})
+	r := D / 2.0
+	result["GB"] = (r + I) * (K / r)
+	return result
 }
