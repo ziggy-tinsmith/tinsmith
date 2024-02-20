@@ -96,6 +96,5 @@ func genericTester(t *testing.T, result map[string]interface{}, expected map[str
 		accuracy := accuracies[index]
 		simple := types[index]
 		checkWithAccuracy(t, result, expected, name, accuracy, simple)
-		break
 	}
 }
