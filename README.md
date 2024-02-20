@@ -9,7 +9,7 @@ Notes:
 * Internationalization
   * [Vuetify - Internationalization](https://vuetifyjs.com/en/customization/internationalization/)
 * Deployment:
-  * [Deploying any app to GitHub Pages](https://medium.com/javascript-in-plain-english/deploying-any-app-to-github-pages-1e8e946bf890)
+  * [Deploy to Github Pages like a pro with Github Actions](https://dev.to/rolanddoda/deploy-to-github-pages-like-a-pro-with-github-actions-4hdg)
 * Vue/Vuetify & TypeScript
   * [How to write a Vue.js app completely in TypeScript](https://blog.logrocket.com/how-to-write-a-vue-js-app-completely-in-typescript/)
   * [Creating a Mobile Web App with Vue, Vuetify & Typescript](https://medium.com/@JonUK/creating-a-mobile-web-app-with-vue-vuetify-typescript-dc69bed4cd2d)
