@@ -32,9 +32,7 @@ func feature21(arguments map[string]interface{}) map[string]interface{} {
 	R := H * C
 	I := math.Asin(V/R) / Rad
 	P := math.Pi / 180.0
-	//"%.f"1
 	result["S"] = 2.0 * math.Pi * r / T
-	//"%.f"0
 	result["L"] = []interface{}{
 		2.0 * math.Pi * r,
 		2.0*math.Pi*r + U,
