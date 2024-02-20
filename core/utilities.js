@@ -47,9 +47,6 @@ function checkWithAccuracy(result, expected, name, accuracy, simple) {
   if (simple) {
     var value = result[name];
     var valueExpected = expected[name];
-    console.log(name)
-    console.log(value)
-    console.log(expected)
     console.assert(
       value.toFixed(accuracy) == valueExpected.toFixed(accuracy),
       `The value ${name} is incorrect (got: ${value}, expected: ${valueExpected})`
