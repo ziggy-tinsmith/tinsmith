@@ -8,12 +8,6 @@ Vue.use(VueRouter);
 // which is lazy-loaded when the route is visited.
 const routes: RouteConfig[] = [
   {
-    path: "/welcome",
-    name: "Welcome",
-    component: () =>
-      import(/* webpackChunkName: "welcome" */ "@/views/ViewWelcome.vue")
-  },
-  {
     path: "/feature01",
     name: "Feature01",
     component: () =>
@@ -32,6 +26,6 @@ const router = new VueRouter({
   routes
 });
 
-router.push("/welcome");
+router.push("/information");
 
 export default router;
