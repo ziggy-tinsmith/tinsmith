@@ -4,32 +4,20 @@ import (
 	"testing"
 )
 
-func feature05Tester(t *testing.T, dd, rr, ss, aa, ee, tt float64, sOK, ll1OK, ll2OK float64, pOK []float64, dttOK, aOK float64) {
-	s, ll1, ll2, p, dtt, a := feature05(dd, rr, ss, aa, ee, tt)
-	if !equalsFormatted(s, sOK, "%.1f") {
-		t.Errorf("The value 's' is incorrect (got: %v, expected: %v)!", s, sOK)
-	}
-	if !equalsFormatted(ll1, ll1OK, "%.0f") {
-		t.Errorf("The value 'll1' is incorrect (got: %v, expected: %v)!", ll1, ll1OK)
-	}
-	if !equalsFormatted(ll2, ll2OK, "%.0f") {
-		t.Errorf("The value 'll2' is incorrect (got: %v, expected: %v)!", ll2, ll2OK)
-	}
-	if !equalsFormattedArray(p, pOK, "%.0f") {
-		t.Errorf("The value 'p' is incorrect (got: %v, expected: %v)!", p, pOK)
-	}
-	if !equalsFormatted(dtt, dttOK, "%.0f") {
-		t.Errorf("The value 'dtt' is incorrect (got: %v, expected: %v)!", dtt, dttOK)
-	}
-	if !equalsFormatted(a, aOK, "%.2f") {
-		t.Errorf("The value 'a' is incorrect (got: %v, expected: %v)!", a, aOK)
-	}
-}
+var (
+	feature05Names      = []string{"S", "L", "Points", "T", "Area"}
+	feature05Accuracies = []string{"%.1f", "%.0f", "%.0f", "%.0f", "%.2f"}
+	feature05Types      = []bool{true, false, true, false, true}
+)
 
 func Test01Feature05(t *testing.T) {
-	feature05Tester(t, 200, 500, 5, 90, 10, 12, 52.4, 628, 658, []float64{73, 75, 81, 89, 97, 103, 105}, 500, 0.49)
+	arguments := map[string]interface{}{"D": 200, "R": 500, "S": 5, "A": 90, "E": 10, "T": 12}
+	expected := map[string]interface{}{"S": 52.4, "L": []float64{628, 658}, "Points": []float64{73, 75, 81, 89, 97, 103, 105}, "T": 500, "Area": 0.49}
+	genericTester(t, feature05(arguments), expected, feature05Names, feature05Accuracies, feature05Types)
 }
 
 func Test02Feature05(t *testing.T) {
-	feature05Tester(t, 400, 600, 8, 90, 20, 16, 78.5, 1257, 1297, []float64{59, 61, 65, 72, 79, 87, 93, 97, 99}, 600, 1.18)
+	arguments := map[string]interface{}{"D": 400, "R": 600, "S": 8, "A": 90, "E": 20, "T": 16}
+	expected := map[string]interface{}{"S": 78.5, "L": []float64{1257, 1297}, "Points": []float64{59, 61, 65, 72, 79, 87, 93, 97, 99}, "T": 600, "Area": 1.18}
+	genericTester(t, feature05(arguments), expected, feature05Names, feature05Accuracies, feature05Types)
 }
