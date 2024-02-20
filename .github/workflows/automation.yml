@@ -41,7 +41,8 @@ jobs:
           npm run build
           git --work-tree dist add --all
           git --work-tree dist commit -m gh-pages
-          git push origin HEAD:gh-pages --force
+          git remote add github "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git push github HEAD:gh-pages --force
           rm -r dist
           git checkout -f master
           git branch -D gh-pages
