@@ -25,3 +25,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Other
+public/main.wasm
+public/wasm_exec.js

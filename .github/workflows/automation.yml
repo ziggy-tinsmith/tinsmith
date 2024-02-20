@@ -20,18 +20,25 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Linting
+      - name: Linting GoLang Core
         run: |
           cd core
           go get -u golang.org/x/lint/golint
           $(which golint 2> /dev/null || echo /home/runner/go/bin/golint) -set_exit_status ./...
           cd ..
-      - name: Testing
+      - name: Testing GoLang Core
         run: |
           cd core
           go test ./...
           cd ..
-      - name: Building and Deploying UI
+      - name: Building GoLang Core
+        run: |
+          cd core
+          GOOS=js GOARCH=wasm go build -o main.wasm
+          cd ..
+          cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" ui/public/
+          cp core/main.wasm ui/public/
+      - name: Building and Deploying Node.js UI
         run: |
           cd ui
           npm ci
