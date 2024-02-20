@@ -17,10 +17,10 @@
             v-on="on"
           >
             <v-list-item-action>01</v-list-item-action>
-            <v-list-item-title>Feature01</v-list-item-title>
+            <v-list-item-title>{{ lookup("Feature01") }}</v-list-item-title>
           </v-list-item>
         </template>
-        <span>Feature01</span>
+        <span>{{ lookup("Feature01") }}</span>
       </v-tooltip>
     </v-list>
     <template v-slot:append>
@@ -63,6 +63,13 @@ export default Vue.extend({
   methods: {
     setDrawer(value: boolean) {
       this.$emit("input", value);
+    },
+
+    lookup(name: string) {
+      if (name === null || !name.startsWith("Feature")) {
+        return name;
+      }
+      return this.$vuetify.lang.t(`$vuetify.${name}`);
     },
   },
 });
