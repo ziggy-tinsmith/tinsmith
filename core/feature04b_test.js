@@ -5,7 +5,7 @@ var feature04BTypes = [true, true];
 function test01Feature04B() {
   var arguments = {"M": 773};
   var expected = {"A": 40, "B": 50};
-  genericTester(feature04B_core(arguments), expected, feature04BNames, feature04BAccuracies, feature04BTypes);;
+  genericTester(feature04b_core(arguments), expected, feature04BNames, feature04BAccuracies, feature04BTypes);
 }
 
 test01Feature04B();
