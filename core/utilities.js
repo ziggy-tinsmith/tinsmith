@@ -4,7 +4,7 @@ function configure(configuration) {
     var parameterKey = configuration.parametersKeys[i];
     var parameterLabel = configuration.parametersLabels[parameterKey];
     document.write(`<tr><td align="right">${parameterLabel}</td><td>=</td><td><input type="number" id="parameter_${parameterKey}"/></td></tr>`);
-    document.getElementById(`parameter_${parameterKey}`).oninput = function() {
+    document.getElementById(`parameter_${parameterKey}`).oninput = function () {
       var results = configuration.coreFunction();
       var resultsKeys = Object.keys(results);
       for (var j = 0; j < resultsKeys.length; j++) {
@@ -47,9 +47,12 @@ function checkWithAccuracy(result, expected, name, accuracy, simple) {
   if (simple) {
     var value = result[name];
     var valueExpected = expected[name];
+    console.log(name)
+    console.log(value)
+    console.log(expected)
     console.assert(
       value.toFixed(accuracy) == valueExpected.toFixed(accuracy),
-      `The value ${name} is incorrect (got: ${value}, expected: ${valueExpected}`
+      `The value ${name} is incorrect (got: ${value}, expected: ${valueExpected})`
     );
   } else {
     for (var i = 0; i < expected.length; i++) {
@@ -57,7 +60,7 @@ function checkWithAccuracy(result, expected, name, accuracy, simple) {
       var valueExpected = expected[name][i];
       console.assert(
         value.toFixed(accuracy) == valueExpected.toFixed(accuracy),
-        `The value ${name} at ${i} is incorrect (got: ${value}, expected: ${valueExpected}`
+        `The value ${name} at ${i} is incorrect (got: ${value}, expected: ${valueExpected})`
       );
     }
   }
