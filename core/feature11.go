@@ -4,53 +4,75 @@ import (
 	"math"
 )
 
-func feature11(kk, gg, ll, ss, ee, tt, ett float64) (kr, gr, kc, gc, okr, ogr, zmks, zmgs, wll, dds []float64, a float64) {
+func feature11(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"K", "G", "L", "S", "E", "T", "ET"})
+	if parameters == nil {
+		return nil
+	}
+	K := getParameter(parameters, "K")
+	G := getParameter(parameters, "G")
+	L := getParameter(parameters, "L")
+	S := getParameter(parameters, "S")
+	E := getParameter(parameters, "E")
+	T := getParameter(parameters, "T")
+	ET := getParameter(parameters, "ET")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	r := kk / 2.0
-	rr := gg / 2.0
-	bb := math.Atan((rr-r)/ll) / Rad
-	ww := (1.0 / 2.0) * ee * math.Sin(bb*Rad)
-	kk = r + ww
-	gg = rr - ww
-	cc := (gg - kk) / ss
-	uu := 1 / math.Sin(bb*Rad)
-	vv := (180.0 / tt) * math.Sin(bb*Rad)
-	kr = make([]float64, 0)
-	gr = make([]float64, 0)
-	kc = make([]float64, 0)
-	gc = make([]float64, 0)
-	for xx := float64(1); xx <= ss; xx += 1.0 {
-		yy := xx - 1.0
-		nn := kk + yy*cc - ww
-		mm := kk + yy*cc + ww
-		kr = append(kr, nn*uu)
-		gr = append(gr, mm*uu)
-		kc = append(kc, 2.0*nn*uu*math.Sin(vv*Rad))
-		gc = append(gc, 2.0*mm*uu*math.Sin(vv*Rad))
+	r := K / 2.0
+	R := G / 2.0
+	B := math.Atan((R-r)/L) / Rad
+	W := (1.0 / 2.0) * E * math.Sin(B*Rad)
+	K = r + W
+	G = R - W
+	C := (G - K) / S
+	U := 1 / math.Sin(B*Rad)
+	V := (180.0 / T) * math.Sin(B*Rad)
+	kr := make([]interface{}, 0)
+	gr := make([]interface{}, 0)
+	kc := make([]interface{}, 0)
+	gc := make([]interface{}, 0)
+	for X := float64(1); X <= S; X += 1.0 {
+		Y := X - 1.0
+		N := K + Y*C - W
+		M := K + Y*C + W
+		kr = append(kr, N*U)
+		gr = append(gr, M*U)
+		kc = append(kc, 2.0*N*U*math.Sin(V*Rad))
+		gc = append(gc, 2.0*M*U*math.Sin(V*Rad))
 	}
-	vv = (180.0 / ett) * math.Sin(bb*Rad)
-	okr = make([]float64, 0)
-	ogr = make([]float64, 0)
-	zmks = make([]float64, 0)
-	zmgs = make([]float64, 0)
-	wll = make([]float64, 0)
-	dds = make([]float64, 0)
-	for xx := float64(1); xx <= ss; xx += 1.0 {
-		yy := xx - 1.0
-		nn := kk + yy*cc - ww
-		mm := kk + yy*cc + ww
-		pp := mm*uu - nn*uu
-		hh := pp * math.Cos(vv*Rad)
-		aa := (mm*uu + nn*uu) * math.Sin(vv*Rad)
-		theta := math.Atan(aa/hh) / Rad
-		dd := hh * (1.0 / math.Cos(theta*Rad))
-		okr = append(okr, nn*uu)
-		ogr = append(ogr, mm*uu)
-		zmks = append(zmks, 2.0*nn*uu*math.Sin(vv*Rad))
-		zmgs = append(zmgs, 2.0*mm*uu*math.Sin(vv*Rad))
-		wll = append(wll, pp)
-		dds = append(dds, dd)
+	result["KR"] = kr
+	result["GR"] = gr
+	result["KC"] = kc
+	result["GC"] = gc
+	V = (180.0 / ET) * math.Sin(B*Rad)
+	okr := make([]interface{}, 0)
+	ogr := make([]interface{}, 0)
+	zmks := make([]interface{}, 0)
+	zmgs := make([]interface{}, 0)
+	wll := make([]interface{}, 0)
+	d := make([]interface{}, 0)
+	for X := float64(1); X <= S; X += 1.0 {
+		Y := X - 1.0
+		N := K + Y*C - W
+		M := K + Y*C + W
+		P := M*U - N*U
+		H := P * math.Cos(V*Rad)
+		A := (M*U + N*U) * math.Sin(V*Rad)
+		theta := math.Atan(A/H) / Rad
+		D := H * (1.0 / math.Cos(theta*Rad))
+		okr = append(okr, N*U)
+		ogr = append(ogr, M*U)
+		zmks = append(zmks, 2.0*N*U*math.Sin(V*Rad))
+		zmgs = append(zmgs, 2.0*M*U*math.Sin(V*Rad))
+		wll = append(wll, P)
+		d = append(d, D)
 	}
-	a = math.Pi * (rr + r) * math.Sqrt(math.Pow(ll, 2.0)+math.Pow(rr-r, 2.0)) * (1.0 / math.Pow(10.0, 6.0))
-	return
+	result["OKR"] = okr
+	result["OGR"] = ogr
+	result["ZMKS"] = zmks
+	result["ZMGS"] = zmgs
+	result["WLL"] = wll
+	result["D"] = d
+	result["Area"] = math.Pi * (R + r) * math.Sqrt(math.Pow(L, 2.0)+math.Pow(R-r, 2.0)) * (1.0 / math.Pow(10.0, 6.0))
+	return result
 }
