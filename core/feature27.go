@@ -26,10 +26,8 @@ func feature27(arguments map[string]interface{}) map[string]interface{} {
 	W := M - N
 	C := M / W
 	Y := 2.0 * W * V
-	//"%.f"1
 	result["KS"] = 2.0 * N * math.Pi / T
 	result["GS"] = 2.0 * M * math.Pi / T
-	//"%.f"0
 	r1 := make([]interface{}, 0)
 	r2 := make([]interface{}, 0)
 	for X := 0.0; X <= T/2.0; X += 1.0 {
