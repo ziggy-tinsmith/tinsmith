@@ -1,7 +1,7 @@
 export default {
   "Feature01": "Koleno 90°",
   "Feature02": "02SGRW",
-  "Fluence03": "Kružni Luk"
+  "Fluence03": "Kružni Luk",
   "Feature04a": "Ugao (Kut) A",
   "Feature04b": "Ugao (Kut) B",
   "Feature05": "Koleno",
