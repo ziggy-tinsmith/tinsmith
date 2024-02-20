@@ -26,10 +26,8 @@ func feature14(arguments map[string]interface{}) map[string]interface{} {
 	V := M - N
 	I := N / M
 	C := M / V
-	//fix1
 	result["SC"] = 2.0 * N * math.Pi / T
 	result["BC"] = 2.0 * M * math.Pi / T
-	//fix0
 	r2 := make([]interface{}, 0)
 	for X := float64(0.0); X <= T/2.0; X += 1.0 {
 		F := X * (360.0 / T)
@@ -58,7 +56,6 @@ func feature14(arguments map[string]interface{}) map[string]interface{} {
 	}
 	result["L1"] = l1
 	result["L2"] = l2
-	// fix 2
 	W := math.Atan(V/L) / Rad
 	result["Area"] = (R + r) * math.Pi * L * (1.0 / math.Cos(W*Rad)) * (1.0 / math.Pow(10.0, 6.0))
 	return result
