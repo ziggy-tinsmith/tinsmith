@@ -49,7 +49,7 @@ func feature22(arguments map[string]interface{}) map[string]interface{} {
 		R := H * math.Tan(B*Rad)
 		K := math.Asin(W/R) / Rad
 		G := math.Asin(W/M) / Rad
-		O := r * math.Cos(K*Rad)
+		O := R * math.Cos(K*Rad)
 		U := M * math.Cos(G*Rad)
 		S := R - O
 		P := M*Y - H
