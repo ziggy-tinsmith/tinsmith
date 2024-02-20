@@ -1,32 +1,32 @@
-package main
+function feature28() {
+  var parameters = extractParameters(["D", "A", "B", "H", "T"]);
+  return feature28_core(parameters);
+}
 
-import "math"
-
-func feature28(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "A", "B", "H", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	A := getParameter(parameters, "A")
-	B := getParameter(parameters, "B")
-	H := getParameter(parameters, "H")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	r := D / 2.0
-	M := A / 2.0
-	N := B / 2.0
-	result["S"] = 2.0 * math.Pi * r / T
-	result["F1"] = math.Sqrt(math.Pow(M-r, 2.0) + math.Pow(H, 2.0))
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := math.Sqrt(math.Pow(M-r*math.Cos(F*Rad), 2.0) + math.Pow(N-r*math.Sin(F*Rad), 2.0) + math.Pow(H, 2.0))
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	result["F2"] = math.Sqrt(math.Pow(N-r, 2.0) + math.Pow(H, 2.0))
-	result["Area"] = (((D*math.Pi/4.0)+B)*math.Sqrt(math.Pow(M-r, 2.0)+math.Pow(H, 2.0)) + ((D*math.Pi/4.0)+A)*math.Sqrt(math.Pow(N-r, 2.0)+math.Pow(H, 2.0))) * (1.0 / math.Pow(10.0, 6.0))
-	return result
+function feature28_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var A = getParameter(parameters, "A")
+  var B = getParameter(parameters, "B")
+  var H = getParameter(parameters, "H")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var r = D / 2.0
+  var M = A / 2.0
+  var N = B / 2.0
+  result["S"] = 2.0 * Math.PI * r / T
+  result["F1"] = Math.sqrt(Math.pow(M - r, 2.0) + Math.pow(H, 2.0))
+  var p = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = Math.sqrt(Math.pow(M - r * Math.cos(F * Rad), 2.0) + Math.pow(N - r * Math.sin(F * Rad), 2.0) + Math.pow(H, 2.0))
+    p.push(Q);
+  }
+  result["Points"] = p
+  result["F2"] = Math.sqrt(Math.pow(N - r, 2.0) + Math.pow(H, 2.0))
+  result["Area"] = (((D * Math.PI / 4.0) + B) * Math.sqrt(Math.pow(M - r, 2.0) + Math.pow(H, 2.0)) + ((D * Math.PI / 4.0) + A) * Math.sqrt(Math.pow(N - r, 2.0) + Math.pow(H, 2.0))) * (1.0 / Math.pow(10.0, 6.0))
+  return result;
 }

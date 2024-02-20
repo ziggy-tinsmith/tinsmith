@@ -1,41 +1,41 @@
-package main
+function feature39() {
+  var parameters = extractParameters(["D", "G", "I", "V", "T"]);
+  return feature39_core(parameters);
+}
 
-import "math"
-
-func feature39(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "G", "I", "V", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	G := getParameter(parameters, "G")
-	I := getParameter(parameters, "I")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	R := G + 10.0 + I
-	W := V - r
-	A := math.Asin(W/R) / Rad
-	L := R * math.Cos(A*Rad)
-	//"%.1f"
-	result["S"] = 2.0 * math.Pi * r / T
-	//"%.0f"
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := L - math.Sqrt(math.Pow(R, 2.0)-math.Pow(r, 2.0)-math.Pow(V, 2.0)+D*V*math.Cos(F*Rad))
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	return result
+function feature39_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var G = getParameter(parameters, "G")
+  var I = getParameter(parameters, "I")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var R = G + 10.0 + I
+  var W = V - r
+  var A = Math.asin(W / R) / Rad
+  var L = R * Math.cos(A * Rad)
+  // 1
+  result["S"] = 2.0 * Math.PI * r / T
+  // 0
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  var p = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = L - Math.sqrt(Math.pow(R, 2.0) - Math.pow(r, 2.0) - Math.pow(V, 2.0) + D * V * Math.cos(F * Rad))
+    p.push(Q);
+  }
+  result["Points"] = p
+  return result;
 }

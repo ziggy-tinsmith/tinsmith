@@ -1,72 +1,72 @@
-package main
+function feature17() {
+  var parameters = extractParameters(["D", "A", "G", "V", "T"]);
+  return feature17_core(parameters);
+}
 
-import "math"
-
-func feature17(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "A", "G", "V", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	A := getParameter(parameters, "A")
-	G := getParameter(parameters, "G")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	R := G / 2.0
-	E := 1.0 / math.Sin(A*Rad)
-	I := 1.0 / math.Tan(A*Rad)
-	L := E*R + I*r
-	W := math.Asin(V/R) / Rad
-	P := math.Pi / 180.0
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T; X += 1.0 {
-		F := X * (360.0 / T)
-		N := r * math.Cos(F*Rad)
-		C := r*math.Sin(F*Rad) - V
-		theta := math.Asin(C/R) / Rad
-		if V == 0.0 && F > 180.0 {
-			break
-		}
-		Q := L - I*N - E*R*math.Cos(theta*Rad)
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	b := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		C := r*math.Cos(F*Rad) - V
-		theta := math.Asin(C/R) / Rad
-		if V == 0.0 && F > 90.0 {
-			break
-		}
-		Q := R * (W + theta) * P
-		b = append(b, Q)
-	}
-	result["B"] = b
-	h := make([]interface{}, 0)
-	for X := 0.0; X <= T; X += 1.0 {
-		F := X * (360.0 / T)
-		N := r * math.Cos(F*Rad)
-		C := r*math.Sin(F*Rad) - V
-		theta := math.Asin(C/R) / Rad
-		if V == 0.0 && F > 180.0 {
-			break
-		}
-		Q := I*R - E*N - I*R*math.Cos(theta*Rad)
-		h = append(h, Q)
-	}
-	result["H"] = h
-	return result
+function feature17_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var A = getParameter(parameters, "A")
+  var G = getParameter(parameters, "G")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var R = G / 2.0
+  var E = 1.0 / Math.sin(A * Rad)
+  var I = 1.0 / Math.tan(A * Rad)
+  var L = E * R + I * r
+  var W = Math.asin(V / R) / Rad
+  var P = Math.PI / 180.0
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  var p = [];
+  for (var X = 0.0; X <= T; X += 1.0) {
+    var F = X * (360.0 / T)
+    var N = r * Math.cos(F * Rad)
+    var C = r * Math.sin(F * Rad) - V
+    var theta = Math.asin(C / R) / Rad
+    if (V == 0.0 && F > 180.0) {
+      break
+    }
+    var Q = L - I * N - E * R * Math.cos(theta * Rad)
+    p.push(Q)
+  }
+  result["Points"] = p
+  var b = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var C = r * Math.cos(F * Rad) - V
+    var theta = Math.asin(C / R) / Rad
+    if (V == 0.0 && F > 90.0) {
+      break
+    }
+    var Q = R * (W + theta) * P
+    b.push(Q)
+  }
+  result["B"] = b
+  var h = [];
+  for (var X = 0.0; X <= T; X += 1.0) {
+    var F = X * (360.0 / T)
+    var N = r * Math.cos(F * Rad)
+    var C = r * Math.sin(F * Rad) - V
+    var theta = Math.asin(C / R) / Rad
+    if (V == 0.0 && F > 180.0) {
+      break
+    }
+    var Q = I * R - E * N - I * R * Math.cos(theta * Rad)
+    h.push(Q)
+  }
+  result["H"] = h
+  return result;
 }

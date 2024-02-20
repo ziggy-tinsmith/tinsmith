@@ -1,45 +1,45 @@
-package main
+function feature25() {
+  var parameters = extractParameters(["K", "G", "L", "D", "E", "T"]);
+  return feature25_core(parameters);
+}
 
-import "math"
-
-func feature25(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"K", "G", "L", "D", "E", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	L := getParameter(parameters, "L")
-	D := getParameter(parameters, "D")
-	E := getParameter(parameters, "E")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	N := K / 2.0
-	M := G / 2.0
-	B := math.Atan((M-N)/L) / Rad
-	R := M + E*math.Sin(B*Rad)
-	U := 1.0 / math.Sin(B*Rad)
-	V := 180.0 * math.Sin(B*Rad)
-	H := R * (1.0 / math.Tan(B*Rad))
-	r := D / 2.0
-	result["KS"] = 2 * N * U * math.Sin((V/T)*Rad)
-	result["GS"] = 2 * R * U * math.Sin((V/T)*Rad)
-	rk := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		W := math.Acos(R*math.Sin(F*Rad)/r) / Rad
-		Q := (N / R) * math.Sqrt(math.Pow(H-(r-r*math.Sin(W*Rad)), 2.0)+math.Pow(R*math.Cos(F*Rad), 2.0)+math.Pow(R*math.Sin(F*Rad), 2.0))
-		rk = append(rk, Q)
-	}
-	result["RK"] = rk
-	rg := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		W := math.Acos(R*math.Sin(F*Rad)/r) / Rad
-		Q := math.Sqrt(math.Pow(H-(r-r*math.Sin(W*Rad)), 2.0) + math.Pow(R*math.Cos(F*Rad), 2.0) + math.Pow(R*math.Sin(F*Rad), 2.0))
-		rg = append(rg, Q)
-	}
-	result["RG"] = rg
-	return result
+function feature25_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var K = getParameter(parameters, "K")
+  var G = getParameter(parameters, "G")
+  var L = getParameter(parameters, "L")
+  var D = getParameter(parameters, "D")
+  var E = getParameter(parameters, "E")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var N = K / 2.0
+  var M = G / 2.0
+  var B = Math.atan((M - N) / L) / Rad
+  var R = M + E * Math.sin(B * Rad)
+  var U = 1.0 / Math.sin(B * Rad)
+  var V = 180.0 * Math.sin(B * Rad)
+  var H = R * (1.0 / Math.tan(B * Rad))
+  var r = D / 2.0
+  result["KS"] = 2 * N * U * Math.sin((V / T) * Rad)
+  result["GS"] = 2 * R * U * Math.sin((V / T) * Rad)
+  var rk = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var W = Math.acos(R * Math.sin(F * Rad) / r) / Rad
+    var Q = (N / R) * Math.sqrt(Math.pow(H - (r - r * Math.sin(W * Rad)), 2.0) + Math.pow(R * Math.cos(F * Rad), 2.0) + Math.pow(R * Math.sin(F * Rad), 2.0))
+    rk.push(Q)
+  }
+  result["RK"] = rk
+  var rg = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var W = Math.acos(R * Math.sin(F * Rad) / r) / Rad
+    var Q = Math.sqrt(Math.pow(H - (r - r * Math.sin(W * Rad)), 2.0) + Math.pow(R * Math.cos(F * Rad), 2.0) + Math.pow(R * Math.sin(F * Rad), 2.0))
+    rg.push(Q)
+  }
+  result["RG"] = rg
+  return result;
 }

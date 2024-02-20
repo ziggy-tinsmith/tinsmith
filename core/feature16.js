@@ -1,60 +1,60 @@
-package main
+function feature16() {
+  var parameters = extractParameters(["D", "K", "G", "M", "T"]);
+  return feature16_core(parameters);
+}
 
-import "math"
+function feature16_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var K = getParameter(parameters, "K")
+  var G = getParameter(parameters, "G")
+  var M = getParameter(parameters, "M")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var R = M / 2.0
+  var A = Math.atan((G - K) / D) / Rad
+  var E = 1 / Math.cos(A * Rad)
+  var J = Math.asin(r * E / R) / Rad
+  var V = R * Math.cos(J * Rad) * Math.sin(A * Rad)
+  var W = Math.asin(V / R) / Rad
+  var P = Math.PI / 180.0
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2 * Math.PI * r,
+    2 * Math.PI * r + U,
+  ];
+  var p = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var C = r * Math.cos(F * Rad) - V
+    var B = Math.asin(C / R) / Rad
+    var Q = R - R * Math.cos(B * Rad)
+    p.push(Q)
+  }
+  result["Points"] = p
+  var b = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var C = r * Math.cos(F * Rad) - V
+    var B = Math.asin(C / R) / Rad
+    var Q = R * (W + B) * P
+    b.push(Q)
+  }
+  result["B"] = b
+  var h = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    h.push(r * Math.sin(F * Rad))
 
-func feature16(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "K", "G", "M", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	M := getParameter(parameters, "M")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	R := M / 2.0
-	A := math.Atan((G-K)/D) / Rad
-	E := 1 / math.Cos(A*Rad)
-	J := math.Asin(r*E/R) / Rad
-	V := R * math.Cos(J*Rad) * math.Sin(A*Rad)
-	W := math.Asin(V/R) / Rad
-	P := math.Pi / 180.0
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2 * math.Pi * r,
-		2*math.Pi*r + U,
-	}
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		C := r*math.Cos(F*Rad) - V
-		B := math.Asin(C/R) / Rad
-		Q := R - R*math.Cos(B*Rad)
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	b := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		C := r*math.Cos(F*Rad) - V
-		B := math.Asin(C/R) / Rad
-		Q := R * (W + B) * P
-		b = append(b, Q)
-	}
-	result["B"] = b
-	h := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		h = append(h, r*math.Sin(F*Rad))
-
-	}
-	result["H"] = h
-	return result
+  }
+  result["H"] = h
+  return result;
 }

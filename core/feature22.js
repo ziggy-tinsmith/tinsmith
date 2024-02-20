@@ -1,66 +1,66 @@
-package main
+function feature22() {
+  var parameters = extractParameters(["D", "A", "K", "G", "L", "J", "V", "T"]);
+  return feature22_core(parameters);
+}
 
-import "math"
-
-func feature22(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "A", "K", "G", "L", "J", "V", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	A := getParameter(parameters, "A")
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	L := getParameter(parameters, "L")
-	J := getParameter(parameters, "J")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	N := K / 2.0
-	M := G / 2.0
-	B := math.Atan((M-N)/L) / Rad
-	Y := 1.0 / math.Tan(B*Rad)
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	A = A + 0.0001
-	theta := A - B
-	E := N*Y + J
-	G = E * math.Tan(B*Rad) * (1.0 / math.Sin(theta*Rad))
-	K = r * (1.0 / math.Tan(A*Rad))
-	L = G + K
-	if A > 90 {
-		L = G - K
-	}
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T; X += 1.0 {
-		F := 180.0 - X*(360.0/T)
-		W := r*math.Sin(F*Rad) - V
-		I := r * (1.0 / math.Tan(theta*Rad)) * math.Cos(F*Rad)
-		H := E + r*(1.0/math.Sin(A*Rad))*math.Cos(B*Rad)*math.Cos(F*Rad)
-		R := H * math.Tan(B*Rad)
-		K := math.Asin(W/R) / Rad
-		G := math.Asin(W/M) / Rad
-		O := R * math.Cos(K*Rad)
-		U := M * math.Cos(G*Rad)
-		S := R - O
-		P := M*Y - H
-		C := math.Atan((U-O)/P) / Rad
-		Z := S / (math.Tan(theta*Rad) + math.Tan(C*Rad))
-		if V == 0.0 && F < 0.0 {
-			break
-		}
-		Q := L + I - (1.0/math.Sin(theta*Rad))*math.Sqrt(math.Pow(math.Tan(B*Rad), 2.0)*math.Pow(H+Z, 2.0)-math.Pow(W, 2.0))
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	return result
+function feature22_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var A = getParameter(parameters, "A")
+  var K = getParameter(parameters, "K")
+  var G = getParameter(parameters, "G")
+  var L = getParameter(parameters, "L")
+  var J = getParameter(parameters, "J")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var N = K / 2.0
+  var M = G / 2.0
+  var B = Math.atan((M - N) / L) / Rad
+  var Y = 1.0 / Math.tan(B * Rad)
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  A = A + 0.0001
+  var theta = A - B
+  var E = N * Y + J
+  G = E * Math.tan(B * Rad) * (1.0 / Math.sin(theta * Rad))
+  K = r * (1.0 / Math.tan(A * Rad))
+  L = G + K
+  if (A > 90) {
+    L = G - K
+  }
+  var p = [];
+  for (var X = 0.0; X <= T; X += 1.0) {
+    var F = 180.0 - X * (360.0 / T)
+    var W = r * Math.sin(F * Rad) - V
+    var I = r * (1.0 / Math.tan(theta * Rad)) * Math.cos(F * Rad)
+    var H = E + r * (1.0 / Math.sin(A * Rad)) * Math.cos(B * Rad) * Math.cos(F * Rad)
+    var R = H * Math.tan(B * Rad)
+    var K = Math.asin(W / R) / Rad
+    var G = Math.asin(W / M) / Rad
+    var O = R * Math.cos(K * Rad)
+    var U = M * Math.cos(G * Rad)
+    var S = R - O
+    var P = M * Y - H
+    var C = Math.atan((U - O) / P) / Rad
+    var Z = S / (Math.tan(theta * Rad) + Math.tan(C * Rad))
+    if (V == 0.0 && F < 0.0) {
+      break
+    }
+    var Q = L + I - (1.0 / Math.sin(theta * Rad)) * Math.sqrt(Math.pow(Math.tan(B * Rad), 2.0) * Math.pow(H + Z, 2.0) - Math.pow(W, 2.0))
+    p.push(Q)
+  }
+  result["Points"] = p
+  return result;
 }

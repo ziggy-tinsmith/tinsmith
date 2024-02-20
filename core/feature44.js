@@ -1,50 +1,50 @@
-package main
+function feature44() {
+  var parameters = extractParameters(["D", "L", "V", "T", "LL"]);
+  return feature44_core(parameters);
+}
 
-import "math"
-
-func feature44(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "L", "V", "T", "LL"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	L := getParameter(parameters, "L")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	C := math.Asin(V/L) / Rad
-	A := C / 2.0
-	B := 90.0 - C
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	pb := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := L - r*math.Tan(A*Rad)*math.Cos(F*Rad)
-		pb = append(pb, Q)
-	}
-	for X := 1.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := L - r*math.Tan(B*Rad)*math.Cos((90.0-F)*Rad)
-		pb = append(pb, Q)
-	}
-	result["PointsB"] = pb
-	L = getParameter(parameters, "LL")
-	pa := make([]interface{}, 0)
-	for X := 0.0; X <= T/4.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := L - r*math.Tan(A*Rad)*math.Cos(F*Rad)
-		pa = append(pa, Q)
-	}
-	result["PointsA"] = pa
-	return result
+function feature44_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var L = getParameter(parameters, "L")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var C = Math.asin(V / L) / Rad
+  var A = C / 2.0
+  var B = 90.0 - C
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  var pb = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = L - r * Math.tan(A * Rad) * Math.cos(F * Rad)
+    pb.push(Q)
+  }
+  for (var X = 1.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = L - r * Math.tan(B * Rad) * Math.cos((90.0 - F) * Rad)
+    pb.push(Q)
+  }
+  result["PointsB"] = pb
+  L = getParameter(parameters, "LL")
+  var pa = [];
+  for (var X = 0.0; X <= T / 4.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = L - r * Math.tan(A * Rad) * Math.cos(F * Rad)
+    pa.push(Q)
+  }
+  result["PointsA"] = pa
+  return result;
 }

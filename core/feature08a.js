@@ -1,15 +1,17 @@
-package main
+function feature08a() {
+  var parameters = extractParameters(["D", "I", "K"]);
+  return feature08a_core(parameters);
+}
 
-func feature08A(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "I", "K"})
-	if parameters == nil {
-		return nil
-	}
-	D := getParameter(parameters, "D")
-	I := getParameter(parameters, "I")
-	K := getParameter(parameters, "K")
-	result := make(map[string]interface{})
-	r := D / 2.0
-	result["GB"] = (r + I) * (K / r)
-	return result
+function feature08a_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var D = getParameter(parameters, "D");
+  var I = getParameter(parameters, "I");
+  var K = getParameter(parameters, "K");
+  var result = {};
+  var r = D / 2.0;
+  result["GB"] = (r + I) * (K / r);
+  return result;
 }

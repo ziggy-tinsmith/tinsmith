@@ -1,23 +1,21 @@
-package main
+function feature04b() {
+  var parameters = extractParameters(["M"]);
+  return feature04b_core(parameters);
+}
 
-import (
-	"math"
-)
-
-func feature04B(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"M"})
-	if parameters == nil {
-		return nil
-	}
-	M := getParameter(parameters, "M")
-	result := make(map[string]interface{})
-	Rad := math.Pi / 180.0
-	C := 400.0
-	N := M - C
-	B := math.Acos(N/C) / Rad
-	W := 8.0 * math.Sin(B*Rad)
-	A := math.Acos((N+W)/C) / Rad
-	result["A"] = 2 * A
-	result["B"] = 90 - 2*A
-	return result
+function feature04b_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var M = getParameter(parameters, "M");
+  var result = {};
+  var Rad = Math.PI / 180.0;
+  var C = 400.0;
+  var N = M - C;
+  var B = Math.acos(N / C) / Rad;
+  var W = 8.0 * Math.sin(B * Rad);
+  var A = Math.acos((N + W) / C) / Rad;
+  result["A"] = 2 * A;
+  result["B"] = 90 - 2 * A;
+  return result;
 }

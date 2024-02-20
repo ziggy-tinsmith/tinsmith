@@ -1,24 +1,22 @@
-package main
+function feature02() {
+  var parameters = extractParameters(["K", "G", "D"]);
+  return feature02_core(parameters);
+}
 
-import (
-	"math"
-)
-
-func feature02(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"K", "G", "D"})
-	if parameters == nil {
-		return nil
-	}
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	D := getParameter(parameters, "D")
-	result := make(map[string]interface{})
-	Rad := math.Pi / 180.0
-	N := K / 2.0
-	M := G / 2.0
-	B := math.Atan((M-N)/D) / Rad
-	U := 1.0 / math.Tan(B*Rad)
-	result["R"] = (1.0 / 2.0) * (M + N) * U
-	result["A"] = B
-	return result
+function feature02_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var K = getParameter(parameters, "K");
+  var G = getParameter(parameters, "G");
+  var D = getParameter(parameters, "D");
+  var result = {};
+  var Rad = Math.PI / 180.0;
+  var N = K / 2.0;
+  var M = G / 2.0;
+  var B = Math.atan((M - N) / D) / Rad;
+  var U = 1.0 / Math.tan(B * Rad);
+  result["R"] = (1.0 / 2.0) * (M + N) * U;
+  result["A"] = B;
+  return result;
 }

@@ -1,41 +1,41 @@
-package main
+function feature19() {
+  var parameters = extractParameters(["D", "G", "R", "A", "V", "T"]);
+  return feature19_core(parameters);
+}
 
-import "math"
-
-func feature19(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "G", "R", "A", "V", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	G := getParameter(parameters, "G")
-	R := getParameter(parameters, "R")
-	A := getParameter(parameters, "A")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	M := G / 2.0
-	N := R + M
-	B := math.Asin((A-r)/N) / Rad
-	L := N * math.Cos(B*Rad)
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	p := make([]interface{}, 0)
-	for X := T; X <= T+T; X += 1.0 {
-		F := X * (360.0 / T)
-		C := R + M*math.Cos(math.Asin((r*math.Sin(F*Rad)-V)/M))
-		Q := L - C*math.Cos(math.Asin((A-r*math.Cos(F*Rad))/C))
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	return result
+function feature19_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var G = getParameter(parameters, "G")
+  var R = getParameter(parameters, "R")
+  var A = getParameter(parameters, "A")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var M = G / 2.0
+  var N = R + M
+  var B = Math.asin((A - r) / N) / Rad
+  var L = N * Math.cos(B * Rad)
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  var p = [];
+  for (var X = T; X <= T + T; X += 1.0) {
+    var F = X * (360.0 / T)
+    var C = R + M * Math.cos(Math.asin((r * Math.sin(F * Rad) - V) / M))
+    var Q = L - C * Math.cos(Math.asin((A - r * Math.cos(F * Rad)) / C))
+    p.push(Q);
+  }
+  result["Points"] = p
+  return result;
 }

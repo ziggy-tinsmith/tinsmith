@@ -1,89 +1,89 @@
-package main
+function feature21() {
+  var parameters = extractParameters(["D", "K", "G", "L", "A", "V", "T"]);
+  return feature21_core(parameters);
+}
 
-import "math"
-
-func feature21(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "K", "G", "L", "A", "V", "T"})
-	if parameters == nil {
-		return nil
-	}
-	result := make(map[string]interface{})
-	D := getParameter(parameters, "D")
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	L := getParameter(parameters, "L")
-	A := getParameter(parameters, "A")
-	V := getParameter(parameters, "V")
-	T := getParameter(parameters, "T")
-	Rad := math.Pi / 180.0
-	U := 30.0
-	if D > 300.0 {
-		U = 40.0
-	}
-	r := D / 2.0
-	N := K / 2.0
-	M := G / 2.0
-	theta := math.Atan((M-N)/L) / Rad
-	E := 1.0 / math.Tan(theta*Rad)
-	O := 1.0 / math.Cos(theta*Rad)
-	H := N*E + A
-	C := math.Tan(theta * Rad)
-	L = (H + r) * C
-	R := H * C
-	I := math.Asin(V/R) / Rad
-	P := math.Pi / 180.0
-	result["S"] = 2.0 * math.Pi * r / T
-	result["L"] = []interface{}{
-		2.0 * math.Pi * r,
-		2.0*math.Pi*r + U,
-	}
-	p := make([]interface{}, 0)
-	for X := 0.0; X <= T; X += 1.0 {
-		F := 180.0 + X*(360.0/T)
-		A := H - r*math.Cos(F*Rad)
-		B := r*math.Sin(F*Rad) - V
-		if V == 0.0 && F > 360.0 {
-			break
-		}
-		Q := L - math.Sqrt(math.Pow(C, 2.0)*math.Pow(A, 2.0)-math.Pow(B, 2.0))
-		p = append(p, Q)
-	}
-	result["Points"] = p
-	b := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		W := r*math.Cos(F*Rad) - V
-		Y := math.Asin(W/R) / Rad
-		if V == 0.0 && F > 90 {
-			break
-		}
-		Q := R * (I + Y) * P
-		b = append(b, Q)
-	}
-	result["B"] = b
-	mh := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := 90.0 + X*(360.0/T)
-		A := H - r*math.Cos(F*Rad)
-		B := r*math.Sin(F*Rad) - V
-		if V == 0.0 && F > 180 {
-			break
-		}
-		Q := H*O - O*math.Sqrt(math.Pow(A, 2.0)+math.Pow(B, 2.0))
-		mh = append(mh, Q)
-	}
-	result["MH"] = mh
-	ph := make([]interface{}, 0)
-	for X := 0.0; X <= T/2.0; X += 1.0 {
-		F := 90.0 - X*(360.0/T)
-		A := H - r*math.Cos(F*Rad)
-		B := r*math.Sin(F*Rad) - V
-		if V == 0.0 && F < 0 {
-			break
-		}
-		Q := H*O - O*math.Sqrt(math.Pow(A, 2.0)+math.Pow(B, 2.0))
-		ph = append(ph, Q)
-	}
-	result["PH"] = ph
-	return result
+function feature21_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var result = {};
+  var D = getParameter(parameters, "D")
+  var K = getParameter(parameters, "K")
+  var G = getParameter(parameters, "G")
+  var L = getParameter(parameters, "L")
+  var A = getParameter(parameters, "A")
+  var V = getParameter(parameters, "V")
+  var T = getParameter(parameters, "T")
+  var Rad = Math.PI / 180.0
+  var U = 30.0
+  if (D > 300.0) {
+    U = 40.0
+  }
+  var r = D / 2.0
+  var N = K / 2.0
+  var M = G / 2.0
+  var theta = Math.atan((M - N) / L) / Rad
+  var E = 1.0 / Math.tan(theta * Rad)
+  var O = 1.0 / Math.cos(theta * Rad)
+  var H = N * E + A
+  var C = Math.tan(theta * Rad)
+  L = (H + r) * C
+  var R = H * C
+  var I = Math.asin(V / R) / Rad
+  var P = Math.PI / 180.0
+  result["S"] = 2.0 * Math.PI * r / T
+  result["L"] = [
+    2.0 * Math.PI * r,
+    2.0 * Math.PI * r + U,
+  ];
+  var p = [];
+  for (var X = 0.0; X <= T; X += 1.0) {
+    var F = 180.0 + X * (360.0 / T)
+    var A = H - r * Math.cos(F * Rad)
+    var B = r * Math.sin(F * Rad) - V
+    if (V == 0.0 && F > 360.0) {
+      break
+    }
+    var Q = L - Math.sqrt(Math.pow(C, 2.0) * Math.pow(A, 2.0) - Math.pow(B, 2.0))
+    p.push(Q)
+  }
+  result["Points"] = p
+  var b = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var W = r * Math.cos(F * Rad) - V
+    var Y = Math.asin(W / R) / Rad
+    if (V == 0.0 && F > 90) {
+      break
+    }
+    var Q = R * (I + Y) * P
+    b.push(Q)
+  }
+  result["B"] = b
+  var mh = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = 90.0 + X * (360.0 / T)
+    var A = H - r * Math.cos(F * Rad)
+    var B = r * Math.sin(F * Rad) - V
+    if (V == 0.0 && F > 180) {
+      break
+    }
+    var Q = H * O - O * Math.sqrt(Math.pow(A, 2.0) + Math.pow(B, 2.0))
+    mh.push(Q)
+  }
+  result["MH"] = mh
+  var ph = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = 90.0 - X * (360.0 / T)
+    var A = H - r * Math.cos(F * Rad)
+    var B = r * Math.sin(F * Rad) - V
+    if (V == 0.0 && F < 0) {
+      break
+    }
+    var Q = H * O - O * Math.sqrt(Math.pow(A, 2.0) + Math.pow(B, 2.0))
+    ph.push(Q)
+  }
+  result["PH"] = ph
+  return result;
 }

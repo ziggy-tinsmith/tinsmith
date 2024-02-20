@@ -1,28 +1,26 @@
-package main
+function feature07() {
+  var parameters = extractParameters(["D", "A", "E"]);
+  return feature07_core(parameters);
+}
 
-import (
-	"math"
-)
-
-func feature07(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"D", "A", "E"})
-	if parameters == nil {
-		return nil
-	}
-	D := getParameter(parameters, "D")
-	A := getParameter(parameters, "A")
-	E := getParameter(parameters, "E")
-	result := make(map[string]interface{})
-	Rad := math.Pi / 180.0
-	r := D / 2.0
-	B := math.Atan(r/A) / Rad
-	U := 1.0 / math.Sin(B*Rad)
-	V := 180.0 * math.Sin(B*Rad)
-	result["Radius"] = []interface{}{
-		r * U,
-		r*U + E,
-	}
-	result["C"] = 2.0 * r * U * math.Sin((V/3.0)*Rad)
-	result["S"] = 2.0 * r * U * math.Sin(V*Rad)
-	return result
+function feature07_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var D = getParameter(parameters, "D");
+  var A = getParameter(parameters, "A");
+  var E = getParameter(parameters, "E");
+  var result = {};
+  var Rad = Math.PI / 180.0;
+  var r = D / 2.0;
+  var B = Math.atan(r / A) / Rad;
+  var U = 1.0 / Math.sin(B * Rad);
+  var V = 180.0 * Math.sin(B * Rad);
+  result["Radius"] = [
+    r * U,
+    r * U + E,
+  ];
+  result["C"] = 2.0 * r * U * Math.sin((V / 3.0) * Rad);
+  result["S"] = 2.0 * r * U * Math.sin(V * Rad);
+  return result;
 }

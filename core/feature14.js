@@ -1,62 +1,60 @@
-package main
+function feature14() {
+  var parameters = extractParameters(["K", "G", "L", "Z", "T"]);
+  return feature14_core(parameters);
+}
 
-import (
-	"math"
-)
-
-func feature14(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"K", "G", "L", "Z", "T"})
-	if parameters == nil {
-		return nil
-	}
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	L := getParameter(parameters, "L")
-	Z := getParameter(parameters, "Z")
-	T := getParameter(parameters, "T")
-	result := make(map[string]interface{})
-	Rad := math.Pi / 180.0
-	r := K / 2.0
-	R := G / 2.0
-	theta := math.Atan((R-r)/L) / Rad
-	N := r - Z*math.Sin(theta*Rad)
-	M := R + Z*math.Sin(theta*Rad)
-	P := 2.0 * Z * math.Cos(theta*Rad)
-	L = L + P
-	V := M - N
-	I := N / M
-	C := M / V
-	result["SC"] = 2.0 * N * math.Pi / T
-	result["BC"] = 2.0 * M * math.Pi / T
-	r2 := make([]interface{}, 0)
-	for X := float64(0.0); X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := I * C * math.Sqrt(math.Pow(V, 2.0)+math.Pow(L, 2.0)+math.Pow(V, 2.0)+2.0*math.Pow(V, 2.0)*math.Cos(F*Rad))
-		r2 = append(r2, Q)
-	}
-	result["R2"] = r2
-	r1 := make([]interface{}, 0)
-	for X := float64(0.0); X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		Q := C * math.Sqrt(math.Pow(V, 2.0)+math.Pow(L, 2.0)+math.Pow(V, 2.0)+2.0*math.Pow(V, 2.0)*math.Cos(F*Rad))
-		r1 = append(r1, Q)
-	}
-	result["R1"] = r1
-	l1 := make([]interface{}, 0)
-	l2 := make([]interface{}, 0)
-	l1 = append(l1, math.Sqrt(math.Pow(M-N+V, 2.0)+math.Pow(L, 2.0)))
-	for X := float64(1.0); X <= T/2.0; X += 1.0 {
-		F := X * (360.0 / T)
-		O := 360.0 / T
-		E := F - O
-		Q := math.Sqrt(math.Pow(M*math.Cos(F*Rad)-N*math.Cos(E*Rad)+V, 2.0) + math.Pow(M*math.Sin(F*Rad)-N*math.Sin(E*Rad), 2.0) + math.Pow(L, 2.0))
-		l2 = append(l2, Q)
-		Q = math.Sqrt(math.Pow(M*math.Cos(F*Rad)-N*math.Cos(F*Rad)+V, 2.0) + math.Pow(M*math.Sin(F*Rad)-N*math.Sin(F*Rad), 2.0) + math.Pow(L, 2.0))
-		l1 = append(l1, Q)
-	}
-	result["L1"] = l1
-	result["L2"] = l2
-	W := math.Atan(V/L) / Rad
-	result["Area"] = (R + r) * math.Pi * L * (1.0 / math.Cos(W*Rad)) * (1.0 / math.Pow(10.0, 6.0))
-	return result
+function feature14_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var K = getParameter(parameters, "K")
+  var G = getParameter(parameters, "G")
+  var L = getParameter(parameters, "L")
+  var Z = getParameter(parameters, "Z")
+  var T = getParameter(parameters, "T")
+  var result = {};
+  var Rad = Math.PI / 180.0
+  var r = K / 2.0
+  var R = G / 2.0
+  var theta = Math.atan((R - r) / L) / Rad
+  var N = r - Z * Math.sin(theta * Rad)
+  var M = R + Z * Math.sin(theta * Rad)
+  var P = 2.0 * Z * Math.cos(theta * Rad)
+  L = L + P
+  var V = M - N
+  var I = N / M
+  var C = M / V
+  result["SC"] = 2.0 * N * Math.PI / T
+  result["BC"] = 2.0 * M * Math.PI / T
+  var r2 = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = I * C * Math.sqrt(Math.pow(V, 2.0) + Math.pow(L, 2.0) + Math.pow(V, 2.0) + 2.0 * Math.pow(V, 2.0) * Math.cos(F * Rad))
+    r2.push(Q)
+  }
+  result["R2"] = r2
+  var r1 = [];
+  for (var X = 0.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var Q = C * Math.sqrt(Math.pow(V, 2.0) + Math.pow(L, 2.0) + Math.pow(V, 2.0) + 2.0 * Math.pow(V, 2.0) * Math.cos(F * Rad))
+    r1.push(Q)
+  }
+  result["R1"] = r1
+  var l1 = [];
+  var l2 = [];
+  l1.push(Math.sqrt(Math.pow(M - N + V, 2.0) + Math.pow(L, 2.0)))
+  for (var X = 1.0; X <= T / 2.0; X += 1.0) {
+    var F = X * (360.0 / T)
+    var O = 360.0 / T
+    var E = F - O
+    var Q = Math.sqrt(Math.pow(M * Math.cos(F * Rad) - N * Math.cos(E * Rad) + V, 2.0) + Math.pow(M * Math.sin(F * Rad) - N * Math.sin(E * Rad), 2.0) + Math.pow(L, 2.0))
+    l2.push(Q)
+    Q = Math.sqrt(Math.pow(M * Math.cos(F * Rad) - N * Math.cos(F * Rad) + V, 2.0) + Math.pow(M * Math.sin(F * Rad) - N * Math.sin(F * Rad), 2.0) + Math.pow(L, 2.0))
+    l1.push(Q)
+  }
+  result["L1"] = l1
+  result["L2"] = l2
+  var W = Math.atan(V / L) / Rad
+  result["Area"] = (R + r) * Math.PI * L * (1.0 / Math.cos(W * Rad)) * (1.0 / Math.pow(10.0, 6.0))
+  return result;
 }

@@ -1,23 +1,21 @@
-package main
+function feature03() {
+  var parameters = extractParameters(["K", "G", "D"]);
+  return feature03_core(parameters);
+}
 
-import (
-	"math"
-)
-
-func feature03(arguments map[string]interface{}) map[string]interface{} {
-	parameters := extractParameters(arguments, []string{"K", "G", "D"})
-	if parameters == nil {
-		return nil
-	}
-	K := getParameter(parameters, "K")
-	G := getParameter(parameters, "G")
-	D := getParameter(parameters, "D")
-	result := make(map[string]interface{})
-	r := D / 2.0
-	M := G + K
-	N := G - K
-	P := math.Pi / 180.0
-	result["R"] = r * (M / N)
-	result["A"] = N / (D * P)
-	return result
+function feature03_core(parameters) {
+  if (parameters == null) {
+    return null;
+  }
+  var K = getParameter(parameters, "K");
+  var G = getParameter(parameters, "G");
+  var D = getParameter(parameters, "D");
+  var result = {};
+  var r = D / 2.0;
+  var M = G + K;
+  var N = G - K;
+  var P = Math.PI / 180.0;
+  result["R"] = r * (M / N);
+  result["A"] = N / (D * P);
+  return result;
 }
