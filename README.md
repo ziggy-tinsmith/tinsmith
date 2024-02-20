@@ -1,8 +1,6 @@
 # Tinsmith
 
-This code is based on a [old program](archive) found on a CASIO calculator and re-implemented as a [new web app](https://altermarkive.github.io/tinsmith/) with Go, TypeScript & Vue/Vuetify.
-
-![Overview](archive/overview.png)
+This code is based on a [old program](archive) found on a CASIO calculator and re-implemented as a [new web app](https://altermarkive.github.io/tinsmith/) with old-school HTML & JavaScript.
 
 Dictionary:
 
