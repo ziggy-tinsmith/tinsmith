@@ -3,20 +3,15 @@
     <v-card class="d-flex flex-column ma-0 pa-0 fill-height" flat>
       <v-card class="mx-2 mt-3 mb-1 px-4 py-0" align="center">
         <v-row>
-          <v-col>
-            <v-text-field v-model="D" :min="0" dense label="D"></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field v-model="R" :min="0" dense label="R"></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field v-model="S" :min="0" dense label="S"></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field v-model="E" :min="0" dense label="E"></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field v-model="T" :min="0" dense label="T"></v-text-field>
+          <v-col v-for="key in parametersKeys" v-bind:key="key">
+            <v-text-field
+              v-model="parameters[key]"
+              :min="0"
+              dense
+              :label="parametersLabels[key]"
+              v-bind:key="key"
+            >
+            </v-text-field>
           </v-col>
           <v-col>
             <v-dialog v-model="help" persistent>
@@ -47,22 +42,12 @@
       </v-card>
       <v-card class="mx-2 mt-1 mb-3 px-4 py-0 flex-grow-1 d-flex align-stretch">
         <v-container>
-          <v-row>
-            <v-col cols="1">‡</v-col>
-            <v-col cols="11">{{ getS(feature01Computed()) }}</v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1">◯</v-col>
-            <v-col cols="11">{{ getL(feature01Computed()) }}</v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1">·</v-col>
-            <v-col cols="11">{{ getPoints(feature01Computed()) }}</v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1">▨</v-col>
-            <v-col cols="11">{{ getArea(feature01Computed()) }}</v-col>
-          </v-row>
+          <table>
+            <tr v-for="entry in feature01Computed()" v-bind:key="entry.key">
+              <td align="left">{{ entry.label }}</td>
+              <td>{{ entry.value }}</td>
+            </tr>
+          </table>
         </v-container>
       </v-card>
     </v-card>
@@ -76,66 +61,98 @@ interface Core {
   feature01: Function;
 }
 
-interface Feature01Computed {
-  S: number;
-  L: number[];
-  Points: number[];
-  Area: number;
+interface ParametersEntries {
+  [key: string]: string;
+}
+
+interface Parameters {
+  [key: string]: number;
+}
+
+interface Results {
+  [key: string]: number | number[];
+}
+
+interface ResultEntry {
+  key: string;
+  label: string;
+  value: string;
+}
+
+function prepareParameters(unprepared: ParametersEntries): Parameters {
+  const prepared: Parameters = {};
+  Object.keys(unprepared).forEach((key: string) => {
+    prepared[key] = parseFloat(unprepared[key]) || NaN;
+  });
+  return prepared;
+}
+
+function prepareResult(
+  composite: Results,
+  key: string,
+  digits: number
+): string {
+  if (composite != null) {
+    if (Array.isArray(composite[key])) {
+      const vector: number[] = composite[key] as number[];
+      return vector.map((item: number) => item.toFixed(digits)).join(", ");
+    }
+    if (typeof composite[key] === "number") {
+      const scalar: number = composite[key] as number;
+      return scalar.toFixed(digits);
+    }
+  }
+  return "";
+}
+
+function prepareResults(
+  composite: Results,
+  keys: string[],
+  labels: Record<string, string>,
+  digits: Record<string, number>
+) {
+  const prepared: ResultEntry[] = keys.map((key: string) => {
+    const entry: ResultEntry = {
+      key: key,
+      label: labels[key],
+      value: prepareResult(composite, key, digits[key]),
+    };
+    return entry;
+  }) as ResultEntry[];
+  return prepared;
 }
 
 export default Vue.extend({
   name: "ViewFeature01",
 
   data: () => ({
-    D: "",
-    R: "",
-    S: "",
-    E: "",
-    T: "",
+    parametersKeys: ["D", "R", "S", "E", "T"],
+    parametersLabels: { D: "D", R: "R", S: "S", E: "E", T: "T" },
+    parameters: {
+      D: "",
+      R: "",
+      S: "",
+      E: "",
+      T: "",
+    },
+    resultsKeys: ["S", "L", "Points", "Area"],
+    resultsLabels: { S: "‡", L: "◯", Points: "·", Area: "▨" },
+    resultsDigits: { S: 1, L: 0, Points: 0, Area: 2 },
     help: false,
   }),
 
   methods: {
     feature01Computed() {
-      return JSON.parse(((window as unknown) as Core).feature01(JSON.stringify({
-        D: parseFloat(this.D) || NaN,
-        R: parseFloat(this.R) || NaN,
-        S: parseFloat(this.S) || NaN,
-        E: parseFloat(this.E) || NaN,
-        T: parseFloat(this.T) || NaN,
-      })));
-    },
-
-    getS(composite: Feature01Computed): string {
-      if (composite != null) {
-        return composite.S.toFixed(1);
-      } else {
-        return "";
-      }
-    },
-
-    getL(composite: Feature01Computed): string {
-      if (composite != null) {
-        return composite.L.map((item: number) => item.toFixed(0)).join(", ");
-      } else {
-        return "";
-      }
-    },
-
-    getPoints(composite: Feature01Computed): string {
-      if (composite != null) {
-        return composite.Points.map((item: number) => item.toFixed(0)).join(", ");
-      } else {
-        return "";
-      }
-    },
-
-    getArea(composite: Feature01Computed): string {
-      if (composite != null) {
-        return composite.Area.toFixed(2);
-      } else {
-        return "";
-      }
+      return prepareResults(
+        JSON.parse(
+          ((window as unknown) as Core).feature01(
+            JSON.stringify(prepareParameters(this.parameters))
+          )
+        ),
+        this.resultsKeys,
+        this.resultsLabels,
+        this.resultsDigits
+      );
     },
   },
 });
