@@ -1,6 +1,9 @@
 name: Automation Script
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   pipeline:
@@ -9,10 +12,14 @@ jobs:
     steps:
       - name: Initiating
         uses: actions/checkout@v1
-      - name: Preparing
-        uses: actions/setup-go@v1
+      - name: Preparing GoLang
+        uses: actions/setup-go@v2
         with:
-          go-version: '1.15.2'
+          go-version: '1.15.x'
+      - name: Preparing Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
       - name: Linting
         run: |
           cd core
@@ -23,4 +30,19 @@ jobs:
         run: |
           cd core
           go test ./...
+          cd ..
+      - name: Building and Deploying UI
+        run: |
+          cd ui
+          npm ci
+          git config user.name $GITHUB_ACTOR
+          git config user.email $GITHUB_ACTOR@users.noreply.github.com
+          git checkout --orphan gh-pages
+          npm run build
+          git --work-tree dist add --all
+          git --work-tree dist commit -m gh-pages
+          git push origin HEAD:gh-pages --force
+          rm -r dist
+          git checkout -f master
+          git branch -D gh-pages
           cd ..
