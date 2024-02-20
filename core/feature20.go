@@ -20,9 +20,7 @@ func feature20(arguments map[string]interface{}) map[string]interface{} {
 	}
 	r := D / 2.0
 	M := G / 2.0
-	//"%.f"1
 	result["S"] = 2.0 * math.Pi * r / T
-	// "%.f"0
 	result["L"] = []interface{}{
 		2.0 * math.Pi * r,
 		2.0*math.Pi*r + U,
