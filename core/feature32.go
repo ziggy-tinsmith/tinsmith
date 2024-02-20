@@ -68,6 +68,6 @@ func feature32(arguments map[string]interface{}) map[string]interface{} {
 	lb = append(lb, 2.0*(M+I*U))
 	result["HB"] = hb
 	result["LB"] = lb
-	result["Area"] = (H*U*(A+B+Y) + H*O*(C+D+J)) * (1.0 / math.Pow(10, 6.0))
+	result["Area"] = (H*U*(A+B+Y) + H*O*(C+D+J)) * (1.0 / math.Pow(10.0, 6.0))
 	return result
 }

@@ -27,6 +27,6 @@ func feature28(arguments map[string]interface{}) map[string]interface{} {
 	}
 	result["Points"] = p
 	result["F2"] = math.Sqrt(math.Pow(N-r, 2.0) + math.Pow(H, 2.0))
-	result["Area"] = (((D*math.Pi/4.0)+B)*math.Sqrt(math.Pow(M-r, 2.0)+math.Pow(H, 2.0)) + ((D*math.Pi/4.0)+A)*math.Sqrt(math.Pow(N-r, 2.0)+math.Pow(H, 2.0))) * (1.0 / math.Pow(10, 6.0))
+	result["Area"] = (((D*math.Pi/4.0)+B)*math.Sqrt(math.Pow(M-r, 2.0)+math.Pow(H, 2.0)) + ((D*math.Pi/4.0)+A)*math.Sqrt(math.Pow(N-r, 2.0)+math.Pow(H, 2.0))) * (1.0 / math.Pow(10.0, 6.0))
 	return result
 }

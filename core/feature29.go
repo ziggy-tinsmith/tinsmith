@@ -52,6 +52,6 @@ func feature29(arguments map[string]interface{}) map[string]interface{} {
 		pd = append(pd, Q)
 	}
 	result["PointsD"] = pd
-	result["Area"] = ((A + (D * math.Pi / 4.0)) + (B + (D * math.Pi / 4.0))) * math.Sqrt(math.Pow(H, 2.0)+math.Pow(V, 2.0)+math.Pow(W, 2.0)) * (1.0 / math.Pow(10, 6.0))
+	result["Area"] = ((A + (D * math.Pi / 4.0)) + (B + (D * math.Pi / 4.0))) * math.Sqrt(math.Pow(H, 2.0)+math.Pow(V, 2.0)+math.Pow(W, 2.0)) * (1.0 / math.Pow(10.0, 6.0))
 	return result
 }
