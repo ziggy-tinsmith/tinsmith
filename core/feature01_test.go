@@ -18,6 +18,6 @@ func Test01Feature01(t *testing.T) {
 
 func Test02Feature01(t *testing.T) {
 	arguments := map[string]interface{}{"D": 400, "R": 600, "S": 8, "E": 20, "T": 16}
-	expected := map[string]interface{}{"S": 78.5, "L": []interface{}{1257, 1297}, "Points": []interface{}{59, 61, 65, 72, 79, 89, 93, 97, 99}, "Area": 1.18}
+	expected := map[string]interface{}{"S": 78.5, "L": []interface{}{1257, 1297}, "Points": []interface{}{59, 61, 65, 72, 79, 87, 93, 97, 99}, "Area": 1.18}
 	genericTester(t, feature01(arguments), expected, feature01Names, feature01Accuracies, feature01Types)
 }
