@@ -917,10 +917,10 @@
               <v-list-item-action>
                 <v-icon>mdi-information-outline</v-icon>
               </v-list-item-action>
-              <v-list-item-title>🛈</v-list-item-title>
+              <v-list-item-title>ⓘ</v-list-item-title>
             </v-list-item>
           </template>
-          <span>🛈</span>
+          <span>ⓘ</span>
         </v-tooltip>
       </v-list>
     </template>

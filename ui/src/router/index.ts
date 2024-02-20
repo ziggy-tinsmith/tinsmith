@@ -345,7 +345,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: "/information",
-    name: "🛈",
+    name: "ⓘ",
     component: () =>
       import(/* webpackChunkName: "information" */ "@/views/ViewInformation.vue")
   },
