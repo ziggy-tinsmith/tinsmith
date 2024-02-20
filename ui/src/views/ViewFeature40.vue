@@ -27,9 +27,9 @@ export default Vue.extend({
 
   data: () => ({
     parametersKeys: ["D", "G", "I", "V", "T"],
-    parametersLabels: { D: "D", G: "G", I: "I", V: "V", T: "T" },
+    parametersLabels: { D: "⌀| D", G: "⌀ D", I: "⟷⧚ I", V: "⟷ V", T: "⧻ T" },
     resultsKeys: ["S", "L", "PointsBR", "PointsSR"],
-    resultsLabels: { S: "S", L: "L", PointsBR: "PointsBR", PointsSR: "PointsSR" },
+    resultsLabels: { S: "∡ S", L: "◯ L", PointsBR: "⦙ P R", PointsSR: "⦙ P r" },
     resultsDigits: { S: 1, L: 0, PointsBR: 0, PointsSR: 0 },
     coreFunction: ((window as unknown) as Core).feature40,
     blueprintName: "feature40",

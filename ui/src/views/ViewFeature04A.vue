@@ -27,9 +27,9 @@ export default Vue.extend({
 
   data: () => ({
     parametersKeys: ["A"],
-    parametersLabels: { A: "A" },
+    parametersLabels: { A: "∠ A" },
     resultsKeys: ["M"],
-    resultsLabels: { M: "M" },
+    resultsLabels: { M: "⟷⧻ M" },
     resultsDigits: { M: 0 },
     coreFunction: ((window as unknown) as Core).feature04a,
     blueprintName: "feature04",
