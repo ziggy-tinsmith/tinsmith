@@ -1,111 +1,73 @@
-package main
-
-import (
-	"fmt"
-	"math"
-	"testing"
-)
-
-func floatify(value interface{}) float64 {
-	switch value.(type) {
-	case int:
-		return float64(value.(int))
-	case int16:
-		return float64(value.(int16))
-	case int32:
-		return float64(value.(int32))
-	case int64:
-		return float64(value.(int64))
-	case uint:
-		return float64(value.(uint))
-	case uint16:
-		return float64(value.(uint16))
-	case uint32:
-		return float64(value.(uint32))
-	case uint64:
-		return float64(value.(uint64))
-	case float32:
-		return float64(value.(float32))
-	case float64:
-		return value.(float64)
-	}
-	return math.NaN()
+function configure(configuration) {
+  document.write('<table style="border: none;">');
+  for (var i = 0; i < configuration.parametersKeys.length; i++) {
+    var parameterKey = configuration.parametersKeys[i];
+    var parameterLabel = configuration.parametersLabels[parameterKey];
+    document.write(`<tr><td align="right">${parameterLabel}</td><td>=</td><td><input type="number" id="parameter_${parameterKey}"/></td></tr>`);
+    document.getElementById(`parameter_${parameterKey}`).oninput = function() {
+      var results = configuration.coreFunction();
+      var resultsKeys = Object.keys(results);
+      for (var j = 0; j < resultsKeys.length; j++) {
+        var resultKey = resultsKeys[j];
+        var result;
+        if (Array.isArray(results[resultKey])) {
+          result = results[resultKey].map(function (value) {
+            return value.toFixed(configuration.resultsDigits[resultKey]);
+          }).join(", ");
+        } else {
+          result = results[resultKey].toFixed(configuration.resultsDigits[resultKey]);
+        }
+        document.getElementById(`result_${resultKey}`).innerHTML = result;
+      }
+    }
+  }
+  for (var i = 0; i < configuration.resultsKeys.length; i++) {
+    var resultKey = configuration.resultsKeys[i];
+    var resultLabel = configuration.resultsLabels[resultKey];
+    document.write(`<tr><td align="right">${resultLabel}</td><td>=</td><td><div id="result_${resultKey}"></div></td></tr>`);
+  }
+  document.write('</table>');
 }
 
-func floatifyArray(array []interface{}) []float64 {
-	floatified := make([]float64, 0)
-	for _, value := range array {
-		floatified = append(floatified, floatify(value))
-	}
-	return floatified
+function extractParameters(names) {
+  var parameters = {};
+  for (var i = 0; i < names.length; i++) {
+    var name = names[i];
+    parameters[name] = document.getElementById(`parameter_${name}`).value;
+  }
+  return parameters;
 }
 
-func extractParameters(arguments map[string]interface{}, names []string) map[string]float64 {
-	parameters := make(map[string]float64)
-	for _, name := range names {
-		if parameter, found := arguments[name]; found {
-			parameters[name] = floatify(parameter)
-		} else {
-			return nil
-		}
-	}
-	return parameters
+function getParameter(parameters, name) {
+  var parameter = parseFloat(parameters[name]);
+  return parameter
 }
 
-func getParameter(parameters map[string]float64, name string) float64 {
-	parameter, _ := parameters[name]
-	return parameter
+function checkWithAccuracy(result, expected, name, accuracy, simple) {
+  if (simple) {
+    var value = result[name];
+    var valueExpected = expected[name];
+    console.assert(
+      value.toFixed(accuracy) == valueExpected.toFixed(accuracy),
+      `The value ${name} is incorrect (got: ${value}, expected: ${valueExpected}`
+    );
+  } else {
+    for (var i = 0; i < expected.length; i++) {
+      var value = result[name][i];
+      var valueExpected = expected[name][i];
+      console.assert(
+        value.toFixed(accuracy) == valueExpected.toFixed(accuracy),
+        `The value ${name} at ${i} is incorrect (got: ${value}, expected: ${valueExpected}`
+      );
+    }
+  }
 }
 
-func symmetric(format string, value float64) string {
-	if value < 0.0 {
-		mirrored := fmt.Sprintf(format, -value)
-		if mirrored == "0" {
-			return "0"
-		}
-		return "-" + mirrored
-	}
-	return fmt.Sprintf(format, value)
-}
-
-func equalsFormatted(value1, value2 float64, format string) bool {
-	return symmetric(format, value1) == symmetric(format, value2)
-}
-
-func equalsFormattedArray(t *testing.T, value1, value2 []float64, format string) bool {
-	if len(value1) != len(value2) {
-		return false
-	}
-	for i := 0; i < len(value1); i++ {
-		if !equalsFormatted(value1[i], value2[i], format) {
-			return false
-		}
-	}
-	return true
-}
-
-func checkWithAccuracy(t *testing.T, result map[string]interface{}, expected map[string]interface{}, name string, accuracy string, simple bool) {
-	if simple {
-		value, _ := result[name]
-		valueExpected, _ := expected[name]
-		if !equalsFormatted(floatify(value), floatify(valueExpected), accuracy) {
-			t.Errorf("The value '%s' is incorrect (got: %v, expected: %v)!", name, value, valueExpected)
-		}
-	} else {
-		valuesRaw, _ := result[name]
-		values := floatifyArray(valuesRaw.([]interface{}))
-		valuesExpectedRaw, _ := expected[name]
-		valuesExpected := floatifyArray(valuesExpectedRaw.([]interface{}))
-		if !equalsFormattedArray(t, values, valuesExpected, accuracy) {
-			t.Errorf("The value '%s' is incorrect (got: %v, expected: %v)!", name, values, valuesExpected)
-		}
-	}
-}
-
-func genericTester(t *testing.T, result map[string]interface{}, expected map[string]interface{}, names []string, accuracies []string, types []bool) {
-	for index, name := range names {
-		accuracy := accuracies[index]
-		simple := types[index]
-		checkWithAccuracy(t, result, expected, name, accuracy, simple)
-	}
+function genericTester(result, expected, names, accuracies, types) {
+  for (var index = 0; index < names.length; index++) {
+    var name = names[index];
+    accuracy = accuracies[index];
+    simple = types[index]
+    checkWithAccuracy(result, expected, name, accuracy, simple);
+  }
 }
