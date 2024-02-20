@@ -21,22 +21,22 @@ func equalsFormattedArray(value1, value2 []float64, format string) bool {
 	return true
 }
 
-func feature01Tester(t *testing.T, dd, rr, ss, ee, tt float64, coOK, c1OK, c2OK float64, pointsOK []float64, areaOK float64) {
-	co, c1, c2, points, area := feature01(dd, rr, ss, ee, tt)
-	if !equalsFormatted(co, coOK, "%.1f") {
-		t.Errorf("The value 'co' is incorrect (got: %v, expected: %v)!", co, coOK)
+func feature01Tester(t *testing.T, dd, rr, ss, ee, tt float64, sOK, ll1OK, ll2OK float64, pOK []float64, aOK float64) {
+	s, ll1, ll2, p, a := feature01(dd, rr, ss, ee, tt)
+	if !equalsFormatted(s, sOK, "%.1f") {
+		t.Errorf("The value 's' is incorrect (got: %v, expected: %v)!", s, sOK)
 	}
-	if !equalsFormatted(c1, c1OK, "%.0f") {
-		t.Errorf("The value 'c1' is incorrect (got: %v, expected: %v)!", c1, c1OK)
+	if !equalsFormatted(ll1, ll1OK, "%.0f") {
+		t.Errorf("The value 'll1' is incorrect (got: %v, expected: %v)!", ll1, ll1OK)
 	}
-	if !equalsFormatted(c2, c2OK, "%.0f") {
-		t.Errorf("The value 'c2' is incorrect (got: %v, expected: %v)!", c2, c2OK)
+	if !equalsFormatted(ll2, ll2OK, "%.0f") {
+		t.Errorf("The value 'll2' is incorrect (got: %v, expected: %v)!", ll2, ll2OK)
 	}
-	if !equalsFormattedArray(points, pointsOK, "%.0f") {
-		t.Errorf("The value 'points' is incorrect (got: %v, expected: %v)!", points, pointsOK)
+	if !equalsFormattedArray(p, pOK, "%.0f") {
+		t.Errorf("The value 'p' is incorrect (got: %v, expected: %v)!", p, pOK)
 	}
-	if !equalsFormatted(area, areaOK, "%.2f") {
-		t.Errorf("The value 'area' is incorrect (got: %v, expected: %v)!", area, areaOK)
+	if !equalsFormatted(a, aOK, "%.2f") {
+		t.Errorf("The value 'a' is incorrect (got: %v, expected: %v)!", a, aOK)
 	}
 }
 

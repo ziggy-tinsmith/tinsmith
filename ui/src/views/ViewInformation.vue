@@ -1,6 +1,14 @@
 <template>
   <v-main>
     <v-sheet class="pa-4" fill-height>
+      <center>
+        <v-img
+          width="64"
+          height="64"
+          contain
+          :src="require('@/assets/logo.svg')"
+        />
+      </center>
       <h2>Information</h2>
       <p>
         <span style="font-weight: bold">Tinsmith</span>
@@ -10,11 +18,12 @@
         <span>© 2020, altermarkive. All rights reserved.</span>
         <br />
         <a
-          href="https://altermarkive.github.io/tinsmith"
+          href="https://github.com/altermarkive/tinsmith"
           target="_blank"
           rel="noopener noreferrer"
-          >https://altermarkive.github.io/tinsmith</a
         >
+          https://github.com/altermarkive/tinsmith
+        </a>
         <br />
       </p>
       <h2>Attributions</h2>

@@ -10,17 +10,17 @@
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <v-list-item
-            to="/welcome"
+            to="/feature01"
             active-class="primary--text"
             ripple
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action> ! </v-list-item-action>
-            <v-list-item-title>!</v-list-item-title>
+            <v-list-item-action>01</v-list-item-action>
+            <v-list-item-title>Feature01</v-list-item-title>
           </v-list-item>
         </template>
-        <span>Welcome</span>
+        <span>Feature01</span>
       </v-tooltip>
     </v-list>
     <template v-slot:append>
@@ -37,10 +37,10 @@
               <v-list-item-action>
                 <v-icon>mdi-information-outline</v-icon>
               </v-list-item-action>
-              <v-list-item-title>Information</v-list-item-title>
+              <v-list-item-title>🛈</v-list-item-title>
             </v-list-item>
           </template>
-          <span>Information</span>
+          <span>🛈</span>
         </v-tooltip>
       </v-list>
     </template>

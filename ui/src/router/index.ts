@@ -3,25 +3,28 @@ import VueRouter, { RouteConfig } from "vue-router";
 
 Vue.use(VueRouter);
 
+// route level code-splitting
+// this generates a separate chunk (*.[hash].js) for this route
+// which is lazy-loaded when the route is visited.
 const routes: RouteConfig[] = [
   {
     path: "/welcome",
     name: "Welcome",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "welcome" */ "@/views/ViewWelcome.vue")
   },
   {
+    path: "/feature01",
+    name: "Feature01",
+    component: () =>
+      import(/* webpackChunkName: "feature01" */ "@/views/ViewFeature01.vue")
+  },
+  {
     path: "/information",
-    name: "Information",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    name: "🛈",
     component: () =>
       import(/* webpackChunkName: "information" */ "@/views/ViewInformation.vue")
-  }
+  },
 ];
 
 const router = new VueRouter({
