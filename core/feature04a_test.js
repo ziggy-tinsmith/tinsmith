@@ -1,17 +1,11 @@
-package main
+var feature04ANames = ["M"];
+var feature04AAccuracies = [0];
+var feature04ATypes = [true];
 
-import (
-	"testing"
-)
-
-var (
-	feature04ANames      = []string{"M"}
-	feature04AAccuracies = []string{"%.0f"}
-	feature04ATypes      = []bool{true}
-)
-
-func Test01Feature04A(t *testing.T) {
-	arguments := map[string]interface{}{"A": 40}
-	expected := map[string]interface{}{"M": 773}
-	genericTester(t, feature04A(arguments), expected, feature04ANames, feature04AAccuracies, feature04ATypes)
+function test01Feature04A() {
+  var arguments = {"A": 40};
+  var expected = {"M": 773};
+  genericTester(feature04A_core(arguments), expected, feature04ANames, feature04AAccuracies, feature04ATypes);;
 }
+
+test01Feature04A();

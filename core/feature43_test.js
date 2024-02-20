@@ -1,15 +1,11 @@
-package main
+var feature43Names = ["SS", "L", "S", "LL", "Points", "Area", "VL"];
+var feature43Accuracies = [0, 0, 1, 0, 0, 2, 2];
+var feature43Types = [true, false, true, true, false, true, true];
 
-import "testing"
-
-var (
-	feature43Names      = []string{"SS", "L", "S", "LL", "Points", "Area", "VL"}
-	feature43Accuracies = []string{"%.0f", "%.0f", "%.1f", "%.0f", "%.0f", "%.2f", "%.2f"}
-	feature43Types      = []bool{true, false, true, true, false, true, true}
-)
-
-func Test01feature43(t *testing.T) {
-	arguments := map[string]interface{}{"D": 200, "I": 10, "K": 20, "S": 8, "Z": 10, "T": 6}
-	expected := map[string]interface{}{"SS": 3, "L": []interface{}{326, 5}, "S": 54.3, "LL": 326, "Points": []interface{}{14, 34, 48, 53}, "Area": 0.15, "VL": 1.39}
-	genericTester(t, feature43(arguments), expected, feature43Names, feature43Accuracies, feature43Types)
+function test01feature43() {
+  var arguments = {"D": 200, "I": 10, "K": 20, "S": 8, "Z": 10, "T": 6};
+  var expected = {"SS": 3, "L": [326, 5], "S": 54.3, "LL": 326, "Points": [14, 34, 48, 53], "Area": 0.15, "VL": 1.39};
+  genericTester(feature43_core(arguments), expected, feature43Names, feature43Accuracies, feature43Types);
 }
+
+test01feature43();

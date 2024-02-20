@@ -1,21 +1,19 @@
-package main
+var feature18Names = ["S", "L", "Points", "B", "H"];
+var feature18Accuracies = [1, 0, 0, 0, 0];
+var feature18Types = [true, false, false, false, false];
 
-import "testing"
-
-var (
-	feature18Names      = []string{"S", "L", "Points", "B", "H"}
-	feature18Accuracies = []string{"%.1f", "%.0f", "%.0f", "%.0f", "%.0f"}
-	feature18Types      = []bool{true, false, false, false, false}
-)
-
-func Test01feature18(t *testing.T) {
-	arguments := map[string]interface{}{"D": 50, "A": 80, "T": 10}
-	expected := map[string]interface{}{"S": 15.7, "L": []interface{}{157, 187}, "Points": []interface{}{0, 27, 98, 186, 256, 284}, "B": []interface{}{144, 116, 44}, "H": []interface{}{0, 15, 24}}
-	genericTester(t, feature18(arguments), expected, feature18Names, feature18Accuracies, feature18Types)
+function test01feature18() {
+  var arguments = {"D": 50, "A": 80, "T": 10};
+  var expected = {"S": 15.7, "L": [157, 187], "Points": [0, 27, 98, 186, 256, 284], "B": [144, 116, 44], "H": [0, 15, 24]};
+  genericTester(feature18_core(arguments), expected, feature18Names, feature18Accuracies, feature18Types);
 }
 
-func Test02feature18(t *testing.T) {
-	arguments := map[string]interface{}{"D": 400, "A": 70, "T": 8}
-	expected := map[string]interface{}{"S": 157.1, "L": []interface{}{1257, 1297}, "Points": []interface{}{0, 161, 549, 938, 1099}, "B": []interface{}{585, 413, 0}, "H": []interface{}{0, 141, 200}}
-	genericTester(t, feature18(arguments), expected, feature18Names, feature18Accuracies, feature18Types)
+test01feature18();
+
+function test02feature18() {
+  var arguments = {"D": 400, "A": 70, "T": 8};
+  var expected = {"S": 157.1, "L": [1257, 1297], "Points": [0, 161, 549, 938, 1099], "B": [585, 413, 0], "H": [0, 141, 200]};
+  genericTester(feature18_core(arguments), expected, feature18Names, feature18Accuracies, feature18Types);
 }
+
+test02feature18();

@@ -1,21 +1,19 @@
-package main
+var feature44Names = ["S", "L", "PointsB", "PointsA"];
+var feature44Accuracies = [1, 0, 0, 0];
+var feature44Types = [true, false, false, false];
 
-import "testing"
-
-var (
-	feature44Names      = []string{"S", "L", "PointsB", "PointsA"}
-	feature44Accuracies = []string{"%.1f", "%.0f", "%.0f", "%.0f"}
-	feature44Types      = []bool{true, false, false, false}
-)
-
-func Test01feature44(t *testing.T) {
-	arguments := map[string]interface{}{"D": 200, "L": 200, "V": 200, "T": 8, "LL": 300}
-	expected := map[string]interface{}{"S": 78.5, "L": []interface{}{628, 658}, "PointsB": []interface{}{100, 129, 200, 200, 200}, "PointsA": []interface{}{200, 229, 300}}
-	genericTester(t, feature44(arguments), expected, feature44Names, feature44Accuracies, feature44Types)
+function test01feature44() {
+  var arguments = {"D": 200, "L": 200, "V": 200, "T": 8, "LL": 300};
+  var expected = {"S": 78.5, "L": [628, 658], "PointsB": [100, 129, 200, 200, 200], "PointsA": [200, 229, 300]};
+  genericTester(feature44_core(arguments), expected, feature44Names, feature44Accuracies, feature44Types);
 }
 
-func Test02feature44(t *testing.T) {
-	arguments := map[string]interface{}{"D": 400, "L": 400, "V": 400, "T": 6, "LL": 600}
-	expected := map[string]interface{}{"S": 209.4, "L": []interface{}{1257, 1297}, "PointsB": []interface{}{200, 300, 400}, "PointsA": []interface{}{400, 500}}
-	genericTester(t, feature44(arguments), expected, feature44Names, feature44Accuracies, feature44Types)
+test01feature44();
+
+function test02feature44() {
+  var arguments = {"D": 400, "L": 400, "V": 400, "T": 6, "LL": 600};
+  var expected = {"S": 209.4, "L": [1257, 1297], "PointsB": [200, 300, 400], "PointsA": [400, 500]};
+  genericTester(feature44_core(arguments), expected, feature44Names, feature44Accuracies, feature44Types);
 }
+
+test02feature44();
