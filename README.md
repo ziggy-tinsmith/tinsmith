@@ -18,13 +18,6 @@ Notes:
   * [Vuex with TypeScript: Tricks to Improve your Developer Experience](https://blog.e-mundo.de/post/vuex-with-typescript-tricks-to-improve-your-developer-experience)
 
 
-Gimp:
-
-* Image -> Mode -> Grayscale
-* Tools -> Transform Tools -> Perspective
-* Colors -> Levels
-
-
 Dictionary (https://unicode-table.com/en/):
 
 * Angle: ∠
