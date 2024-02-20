@@ -13,7 +13,14 @@ jobs:
         uses: actions/setup-go@v1
         with:
           go-version: '1.15.2'
+      - name: Linting
+        run: |
+          cd core
+          go get -u golang.org/x/lint/golint
+          golint -set_exit_status ./...
+          cd ..
       - name: Testing
         run: |
           cd core
           go test ./...
+          cd ..
