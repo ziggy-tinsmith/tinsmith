@@ -6,11 +6,8 @@
       <b>Tinsmith - {{ lookup($route.name) }}</b>
     </v-toolbar-title>
     <v-spacer />
-    <v-select
-      v-model="$vuetify.lang.current"
-      :items="languages"
-      width="50px"
-    ></v-select>
+    <v-select v-model="$vuetify.lang.current" :items="languages" width="50px">
+    </v-select>
   </v-app-bar>
 </template>
 
