@@ -61,12 +61,12 @@ func equalsFormatted(value1, value2 float64, format string) bool {
 	return fmt.Sprintf(format, value1) == fmt.Sprintf(format, value2)
 }
 
-func equalsFormattedArray(value1, value2 []float64, format string) bool {
+func equalsFormattedArray(t *testing.T, value1, value2 []float64, format string) bool {
 	if len(value1) != len(value2) {
 		return false
 	}
 	for i := 0; i < len(value1); i++ {
-		if !equalsFormatted(value1[i], value1[i], format) {
+		if !equalsFormatted(value1[i], value2[i], format) {
 			return false
 		}
 	}
@@ -85,7 +85,7 @@ func checkWithAccuracy(t *testing.T, result map[string]interface{}, expected map
 		values := floatifyArray(valuesRaw.([]interface{}))
 		valuesExpectedRaw, _ := expected[name]
 		valuesExpected := floatifyArray(valuesExpectedRaw.([]interface{}))
-		if !equalsFormattedArray(values, valuesExpected, accuracy) {
+		if !equalsFormattedArray(t, values, valuesExpected, accuracy) {
 			t.Errorf("The value '%s' is incorrect (got: %v, expected: %v)!", name, values, valuesExpected)
 		}
 	}
