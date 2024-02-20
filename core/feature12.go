@@ -34,7 +34,7 @@ func feature12(arguments map[string]interface{}) map[string]interface{} {
 	for X := float64(1); X <= S; X += 1.0 {
 		Y := X - 1.0
 		N := K + Y*C - W
-		M := K + Y*C + W
+		M := K + X*C + W
 		kr = append(kr, N*U)
 		gr = append(gr, M*U)
 		kc = append(kc, 2.0*N*U*math.Sin(V*Rad))
@@ -54,7 +54,7 @@ func feature12(arguments map[string]interface{}) map[string]interface{} {
 	for X := float64(1); X <= S; X += 1.0 {
 		Y := X - 1.0
 		N := K + Y*C - W
-		M := K + Y*C + W
+		M := K + X*C + W
 		P := M*U - N*U
 		H := P * math.Cos(V*Rad)
 		A := (M*U + N*U) * math.Sin(V*Rad)
