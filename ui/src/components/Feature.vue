@@ -8,7 +8,7 @@
               v-model="parameters[key]"
               :min="0"
               dense
-              :label="parametersLabels[key]"
+              :label="parametersLabels[key] + ' ='"
               v-bind:key="key"
             >
             </v-text-field>
@@ -44,7 +44,7 @@
         <v-container>
           <table>
             <tr v-for="entry in featureComputed()" v-bind:key="entry.key">
-              <td align="left">{{ entry.label }}</td>
+              <td align="left">{{ entry.label }}&nbsp;=&nbsp;</td>
               <td>{{ entry.value }}</td>
             </tr>
           </table>
