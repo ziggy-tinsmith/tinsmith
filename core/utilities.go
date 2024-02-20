@@ -57,8 +57,19 @@ func getParameter(parameters map[string]float64, name string) float64 {
 	return parameter
 }
 
+func symmetric(format string, value float64) string {
+	if value < 0.0 {
+		mirrored := fmt.Sprintf(format, -value)
+		if mirrored == "0" {
+			return "0"
+		}
+		return "-" + mirrored
+	}
+	return fmt.Sprintf(format, value)
+}
+
 func equalsFormatted(value1, value2 float64, format string) bool {
-	return fmt.Sprintf(format, value1) == fmt.Sprintf(format, value2)
+	return symmetric(format, value1) == symmetric(format, value2)
 }
 
 func equalsFormattedArray(t *testing.T, value1, value2 []float64, format string) bool {
