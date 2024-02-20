@@ -18,6 +18,6 @@ func feature04B(arguments map[string]interface{}) map[string]interface{} {
 	W := 8.0 * math.Sin(B*Rad)
 	A := math.Acos((N+W)/C) / Rad
 	result["A"] = 2 * A
-	result["B"] = 90 - A
+	result["B"] = 90 - 2*A
 	return result
 }
