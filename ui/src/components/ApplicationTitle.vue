@@ -6,10 +6,18 @@
       <b>Tinsmith - {{ lookup($route.name) }}</b>
     </v-toolbar-title>
     <v-spacer />
-    <v-select v-model="$vuetify.lang.current" :items="languages" width="50px">
-    </v-select>
+    <v-component max-width="30px" flat>
+      <v-select
+        v-model="$vuetify.lang.current"
+        :items="languages"
+        max-width="30px"
+        dense
+      ></v-select>
+    </v-component>
   </v-app-bar>
 </template>
+
+
 
 <script lang="ts">
 import Vue from "vue";
