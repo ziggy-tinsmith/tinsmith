@@ -1,5 +1,7 @@
 # Tinsmith
 
+This code is based on a [program](archive) found on an old calculator.
+
 Notes:
 
 * PWA:
