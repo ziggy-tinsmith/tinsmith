@@ -40,15 +40,12 @@
           </v-col>
         </v-row>
       </v-card>
-      <v-card class="mx-2 mt-1 mb-3 px-4 py-0 flex-grow-1 d-flex align-stretch">
-        <v-container>
-          <table>
-            <tr v-for="entry in featureComputed()" v-bind:key="entry.key">
-              <td align="left">{{ entry.label }}&nbsp;=&nbsp;</td>
-              <td>{{ entry.value }}</td>
-            </tr>
-          </table>
-        </v-container>
+      <v-card class="mx-2 mt-1 mb-3 px-4 py-4 flex-grow-1 d-flex align-stretch">
+        <div>
+          <span v-for="entry in featureComputed()" v-bind:key="entry.key">
+            {{ entry.label }}&nbsp;=&nbsp;{{ entry.value }}<br />
+          </span>
+        </div>
       </v-card>
     </v-card>
   </v-main>
@@ -181,9 +178,7 @@ export default Vue.extend({
     featureComputed() {
       return prepareResults(
         JSON.parse(
-          this.coreFunction(
-            JSON.stringify(prepareParameters(this.parameters))
-          )
+          this.coreFunction(JSON.stringify(prepareParameters(this.parameters)))
         ),
         this.resultsKeys as string[],
         this.resultsLabels as ResultsLabels,
