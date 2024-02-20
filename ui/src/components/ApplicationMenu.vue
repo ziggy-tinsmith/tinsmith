@@ -64,7 +64,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>04A</v-list-item-action>
+            <v-list-item-action>04'</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature04A") }}</v-list-item-title>
           </v-list-item>
         </template>
@@ -80,7 +80,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>04B</v-list-item-action>
+            <v-list-item-action>04"</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature04B") }}</v-list-item-title>
           </v-list-item>
         </template>
@@ -144,7 +144,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>08A</v-list-item-action>
+            <v-list-item-action>08'</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature08A") }}</v-list-item-title>
           </v-list-item>
         </template>
@@ -160,7 +160,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>08B</v-list-item-action>
+            <v-list-item-action>08"</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature08B") }}</v-list-item-title>
           </v-list-item>
         </template>
@@ -176,7 +176,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>09A</v-list-item-action>
+            <v-list-item-action>09'</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature09A") }}</v-list-item-title>
           </v-list-item>
         </template>
@@ -192,7 +192,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-list-item-action>09B</v-list-item-action>
+            <v-list-item-action>09"</v-list-item-action>
             <v-list-item-title>{{ lookup("Feature09B") }}</v-list-item-title>
           </v-list-item>
         </template>
