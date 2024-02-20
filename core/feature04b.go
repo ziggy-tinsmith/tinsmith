@@ -4,14 +4,20 @@ import (
 	"math"
 )
 
-func feature04B(mm float64) (aa, bb float64) {
+func feature04B(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"M"})
+	if parameters == nil {
+		return nil
+	}
+	M := getParameter(parameters, "M")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	cc := 400.0
-	nn := mm - cc
-	bb = math.Acos(nn/cc) / Rad
-	ww := 8.0 * math.Sin(bb*Rad)
-	aa = math.Acos((nn+ww)/cc) / Rad
-	aa = 2 * aa
-	bb = 90 - aa
-	return
+	C := 400.0
+	N := M - C
+	B := math.Acos(N/C) / Rad
+	W := 8.0 * math.Sin(B*Rad)
+	A := math.Acos((N+W)/C) / Rad
+	result["A"] = 2 * A
+	result["B"] = 90 - A
+	return result
 }
