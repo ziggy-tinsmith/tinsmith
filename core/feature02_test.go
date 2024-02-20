@@ -4,16 +4,14 @@ import (
 	"testing"
 )
 
-func feature02Tester(t *testing.T, kk, gg, dd float64, rrOK, aaOK float64) {
-	rr, aa := feature02(kk, gg, dd)
-	if !equalsFormatted(rr, rrOK, "%.0f") {
-		t.Errorf("The value 'rr' is incorrect (got: %v, expected: %v)!", rr, rrOK)
-	}
-	if !equalsFormatted(aa, aaOK, "%.2f") {
-		t.Errorf("The value 'aa' is incorrect (got: %v, expected: %v)!", aa, aaOK)
-	}
-}
+var (
+	feature02Names      = []string{"R", "A"}
+	feature02Accuracies = []string{"%.0f", "%.2f"}
+	feature02Types      = []bool{true, true}
+)
 
 func Test01Feature02(t *testing.T) {
-	feature02Tester(t, 200, 300, 100, 250, 26.57)
+	arguments := map[string]interface{}{"K": 200, "G": 300, "D": 100}
+	expected := map[string]interface{}{"R": 250, "A": 26.57}
+	genericTester(t, feature02(arguments), expected, feature02Names, feature02Accuracies, feature02Types)
 }
