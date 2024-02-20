@@ -2,11 +2,11 @@
 
 package main
 
-import (
-	"syscall/js"
-)
+// import (
+// 	"syscall/js"
+// )
 
 func main() {
-	window := js.Global().Get("window")
+	// window := js.Global().Get("window")
 	select {}
 }
