@@ -1,6 +1,7 @@
 # Tinsmith
 
 Notes:
+
 * PWA:
   * [A Few Tips That Will Make Your PWA on iOS Feel Like Native](https://www.netguru.com/codestories/pwa-on-ios)
   * [Vuetify - Usage with PWA](https://vuetifyjs.com/en/getting-started/quick-start/#usage-with-pwa)
@@ -13,7 +14,19 @@ Notes:
   * [Vuex and Typescript](https://codeburst.io/vuex-and-typescript-3427ba78cfa8)
   * [Vuex + TypeScript](https://dev.to/3vilarthas/vuex-typescript-m4j)
   * [Vuex with TypeScript: Tricks to Improve your Developer Experience](https://blog.e-mundo.de/post/vuex-with-typescript-tricks-to-improve-your-developer-experience)
-* Gimp
-  * Image -> Mode -> Grayscale
-  * Tools -> Transform Tools -> Perspective
-  * Colors -> Levels
+
+
+Gimp:
+
+* Image -> Mode -> Grayscale
+* Tools -> Transform Tools -> Perspective
+* Colors -> Levels
+
+
+Dictionary (https://unicode-table.com/en/):
+
+* Angle: ∠
+* Compass Opening: ∡
+* Diameter: ⌀
+* Radius: ½ ⌀
+* Miscellaneous: ⬒⬓⬔⬕⬖⬗⬘⬙⬚⬟⬡⬢⬥⬦⬬⬭⭙⨀⨁⨝⨭⨮⨲⩙⩡⫯⫰⫱⫶⭚⭛⭜⭝⭮⭯⭱⭳⭰⭲⮄⮅⮆⮇⮔⮘⮙⮚⮛⮜⮝⮞⮟⮹⦙⦚⮽⯀⯁⯂⯃⯄⯅⯊⯋⦜⦝⦡⧀⧁⧆⧈⧉⧟⧢⧦⧧⧺⧻⟊⟎⟏⟐⟓⟔⟕⟖⟗⟛⟟⟜⟤⟥⨳❖⨷⨻▢▨▧▩◐◑◒◓◔◕◠◡⟴⤞⤠⍈⍆⤝⤟⍇⍅⍐⍗⟷⇱⇲⅏⇶∆∅⌖⌧⎅⎌⎋⎉⎊⏙⏘⏢⑀⑄┆┇◰◱◲◳︗︘
