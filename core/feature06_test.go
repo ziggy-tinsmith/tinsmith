@@ -4,26 +4,20 @@ import (
 	"testing"
 )
 
-func feature06Tester(t *testing.T, dd, aa, tt float64, ssOK, ll1OK, ll2OK float64, pOK []float64) {
-	ss, ll1, ll2, p := feature06(dd, aa, tt)
-	if !equalsFormatted(ss, ssOK, "%.1f") {
-		t.Errorf("The value 'ss' is incorrect (got: %v, expected: %v)!", ss, ssOK)
-	}
-	if !equalsFormatted(ll1, ll1OK, "%.0f") {
-		t.Errorf("The value 'll1' is incorrect (got: %v, expected: %v)!", ll1, ll1OK)
-	}
-	if !equalsFormatted(ll2, ll2OK, "%.0f") {
-		t.Errorf("The value 'll2' is incorrect (got: %v, expected: %v)!", ll2, ll2OK)
-	}
-	if !equalsFormattedArray(p, pOK, "%.0f") {
-		t.Errorf("The value 'p' is incorrect (got: %v, expected: %v)!", p, pOK)
-	}
-}
+var (
+	feature06Names      = []string{"S", "L", "Points"}
+	feature06Accuracies = []string{"%.1f", "%.0f", "%.0f"}
+	feature06Types      = []bool{true, false, true}
+)
 
 func Test01Feature06(t *testing.T) {
-	feature06Tester(t, 200, 90, 12, 52.4, 628, 658, []float64{0, 13, 50, 100, 150, 187, 200})
+	arguments := map[string]interface{}{"D": 200, "A": 90, "T": 12}
+	expected := map[string]interface{}{"S": 52.4, "L": []float64{628, 658}, "Points": []float64{0, 13, 50, 100, 150, 187, 200}}
+	genericTester(t, feature06(arguments), expected, feature06Names, feature06Accuracies, feature06Types)
 }
 
 func Test02Feature06(t *testing.T) {
-	feature06Tester(t, 400, 90, 16, 78.5, 1257, 1297, []float64{0, 15, 59, 123, 200, 277, 341, 385, 400})
+	arguments := map[string]interface{}{"D": 400, "A": 90, "T": 16}
+	expected := map[string]interface{}{"S": 78.5, "L": []float64{1257, 1297}, "Points": []float64{0, 15, 59, 123, 200, 277, 341, 385, 400}}
+	genericTester(t, feature06(arguments), expected, feature06Names, feature06Accuracies, feature06Types)
 }

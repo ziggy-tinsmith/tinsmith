@@ -4,23 +4,34 @@ import (
 	"math"
 )
 
-func feature06(dd, aa, tt float64) (ss, ll1, ll2 float64, p []float64) {
+func feature06(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "A", "T"})
+	if parameters == nil {
+		return nil
+	}
+	D := getParameter(parameters, "D")
+	A := getParameter(parameters, "A")
+	T := getParameter(parameters, "T")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	uu := float64(30)
-	if dd > 300 {
-		uu = 40
+	U := float64(30)
+	if D > 300 {
+		U = 40
 	}
-	r := dd / 2.0
-	bb := aa / 2.0
-	ll := r * math.Tan(bb*Rad)
-	ss = 2.0 * math.Pi * r / tt
-	ll1 = 2.0 * math.Pi * r
-	ll2 = 2.0*math.Pi*r + uu
-	p = make([]float64, 0)
-	for xx := float64(0); xx <= tt/2.0; xx += 1.0 {
-		ff := xx * (360.0 / tt)
-		qq := ll - r*math.Tan(bb*Rad)*math.Cos(ff*Rad)
-		p = append(p, qq)
+	r := D / 2.0
+	B := A / 2.0
+	L := r * math.Tan(B*Rad)
+	result["S"] = 2.0 * math.Pi * r / T
+	result["L"] = []interface{}{
+		2.0 * math.Pi * r,
+		2.0*math.Pi*r + U,
 	}
-	return
+	p := make([]interface{}, 0)
+	for X := float64(0); X <= T/2.0; X += 1.0 {
+		F := X * (360.0 / T)
+		Q := L - r*math.Tan(B*Rad)*math.Cos(F*Rad)
+		p = append(p, Q)
+	}
+	result["Points"] = p
+	return result
 }
