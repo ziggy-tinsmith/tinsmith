@@ -4,31 +4,52 @@ import (
 	"math"
 )
 
-func feature09B(dd, aa float64) (ff1, ff2, rr1, rr2, dd1, dd2, tt, hll01, hll02, hll11, hll12, hll21, hll22, hll31, hll32 float64) {
-	Rad := math.Pi / 180.0
-	uu := 30.0
-	if dd > 300.0 {
-		uu = 40.0
+func feature09B(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "A"})
+	if parameters == nil {
+		return nil
 	}
-	r := dd / 2.0
-	ee := math.Acos((r-aa)/r) / Rad
-	gg := r * math.Sin(ee*Rad)
-	pp := math.Pi / 180.0
-	bb := r * ee * pp
-	ff1 = gg
-	ff2 = 2.0 * ff1
-	rr1 = bb
-	rr2 = 2.0 * rr1
-	dd1 = bb - gg
-	dd2 = 2.0 * dd1
-	tt = (1.0/4.0)*dd*math.Pi - bb
-	hll01 = dd*math.Pi - 2.0*(bb-gg)
-	hll02 = hll01 + uu
-	hll11 = (1.0/4.0)*dd*math.Pi - bb + gg
-	hll12 = hll11 + uu
-	hll21 = (1.0/2.0)*dd*math.Pi - bb + gg
-	hll22 = hll21 + uu
-	hll31 = (3.0/4.0)*dd*math.Pi - bb + gg
-	hll32 = hll31 + uu
-	return
+	D := getParameter(parameters, "D")
+	A := getParameter(parameters, "A")
+	result := make(map[string]interface{})
+	Rad := math.Pi / 180.0
+	U := 30.0
+	if D > 300.0 {
+		U = 40.0
+	}
+	r := D / 2.0
+	E := math.Acos((r-A)/r) / Rad
+	G := r * math.Sin(E*Rad)
+	P := math.Pi / 180.0
+	B := r * E * P
+	result["F"] = []interface{}{
+		G,
+		2.0 * G,
+	}
+	result["R"] = []interface{}{
+		B,
+		2.0 * B,
+	}
+	result["D"] = []interface{}{
+		B - G,
+		2.0 * (B - G),
+	}
+	result["T"] = (1.0/4.0)*D*math.Pi - B
+	result["L"] = []interface{}{
+		D*math.Pi - 2.0*(B-G),
+		D*math.Pi - 2.0*(B-G) + U,
+	}
+	result["L1"] = []interface{}{
+		(1.0/4.0)*D*math.Pi - B + G,
+		(1.0/4.0)*D*math.Pi - B + G + U,
+	}
+	result["L2"] = []interface{}{
+		(1.0/2.0)*D*math.Pi - B + G,
+		(1.0/2.0)*D*math.Pi - B + G + U,
+	}
+	result["L3"] = []interface{}{
+		(3.0/4.0)*D*math.Pi - B + G,
+		(3.0/4.0)*D*math.Pi - B + G + U,
+	}
+	return result
 }
