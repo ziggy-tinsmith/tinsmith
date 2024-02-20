@@ -1,44 +1,79 @@
 <!DOCTYPE html>
-<html lang="en" style="overflow-y: hidden;">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" />
   <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Tinsmith" />
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-  <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico" />
-  <link rel="apple-touch-icon" href="<%= BASE_URL %>img/icons/icon512.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-  <link rel="manifest" href="<%= BASE_URL %>manifest.json" />
-  <link rel="wasm" href="<%= BASE_URL %>main.wasm">
-  <script src="<%= BASE_URL %>wasm_exec.js"></script>
-  <script>
-    window.go = new Go();
-    fetch("main.wasm").then(response =>
-      response.arrayBuffer()
-    ).then(bytes =>
-      WebAssembly.instantiate(bytes, window.go.importObject)
-    ).then(result => {
-      window.go.run(result.instance);
-    });
-  </script>
   <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 
 <body>
   <noscript>
     <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
   </noscript>
-  <div id="app" style="background:#FFFFFF;"></div>
-  <!-- built files will be auto injected -->
+  <h1>Tinsmith App - Blechabwicklungsprogramme</h1>
+  <a href="core/feature01.html">Feature 01</a></br>
+  <a href="core/feature02.html">Feature 02</a></br>
+  <a href="core/feature03.html">Feature 03</a></br>
+  <a href="core/feature04a.html">Feature 04A</a></br>
+  <a href="core/feature04b.html">Feature 04B</a></br>
+  <a href="core/feature05.html">Feature 05</a></br>
+  <a href="core/feature06.html">Feature 06</a></br>
+  <a href="core/feature07.html">Feature 07</a></br>
+  <a href="core/feature08a.html">Feature 08A</a></br>
+  <a href="core/feature08b.html">Feature 08B</a></br>
+  <a href="core/feature09a.html">Feature 09A</a></br>
+  <a href="core/feature09b.html">Feature 09B</a></br>
+  <a href="core/feature10.html">Feature 10</a></br>
+  <a href="core/feature11.html">Feature 11</a></br>
+  <a href="core/feature12.html">Feature 12</a></br>
+  <a href="core/feature13.html">Feature 13</a></br>
+  <a href="core/feature14.html">Feature 14</a></br>
+  <a href="core/feature15.html">Feature 15</a></br>
+  <a href="core/feature16.html">Feature 16</a></br>
+  <a href="core/feature17.html">Feature 17</a></br>
+  <a href="core/feature18.html">Feature 18</a></br>
+  <a href="core/feature19.html">Feature 19</a></br>
+  <a href="core/feature20.html">Feature 20</a></br>
+  <a href="core/feature21.html">Feature 21</a></br>
+  <a href="core/feature22.html">Feature 22</a></br>
+  <a href="core/feature23.html">Feature 23</a></br>
+  <a href="core/feature24.html">Feature 24</a></br>
+  <a href="core/feature25.html">Feature 25</a></br>
+  <a href="core/feature26.html">Feature 26</a></br>
+  <a href="core/feature27.html">Feature 27</a></br>
+  <a href="core/feature28.html">Feature 28</a></br>
+  <a href="core/feature29.html">Feature 29</a></br>
+  <a href="core/feature30.html">Feature 30</a></br>
+  <a href="core/feature31.html">Feature 31</a></br>
+  <a href="core/feature32.html">Feature 32</a></br>
+  <a href="core/feature33.html">Feature 33</a></br>
+  <a href="core/feature34.html">Feature 34</a></br>
+  <a href="core/feature35.html">Feature 35</a></br>
+  <a href="core/feature39.html">Feature 39</a></br>
+  <a href="core/feature40.html">Feature 40</a></br>
+  <a href="core/feature41.html">Feature 41</a></br>
+  <a href="core/feature43.html">Feature 43</a></br>
+  <a href="core/feature44.html">Feature 44</a></br>
+  <a href="core/feature45.html">Feature 45</a></br>
+  <a href="core/feature46.html">Feature 46</a></br>
+  <a href="core/feature47.html">Feature 47</a></br>
+  <a href="core/feature48.html">Feature 48</a></br>
+  <a href="core/feature49.html">Feature 49</a></br>
+  <a href="core/feature50.html">Feature 50</a></br>
+  <a href="core/feature51.html">Feature 51</a></br>
+  <a href="core/feature52.html">Feature 52</a></br>
+  <a href="core/feature53.html">Feature 53</a></br>
+  <a href="core/feature54.html">Feature 54</a></br>
+  <a href="core/feature55.html">Feature 55</a></br>
+  <a href="core/feature56.html">Feature 56</a></br>
+  <a href="core/feature57.html">Feature 57</a></br>
 </body>
 
 </html>
