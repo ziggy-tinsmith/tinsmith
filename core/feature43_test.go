@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var (
-	feature43Names      = []string{"SS", "L", "S", "L", "Points", "Area", "VL"}
+	feature43Names      = []string{"SS", "L", "S", "LL", "Points", "Area", "VL"}
 	feature43Accuracies = []string{"%.0f", "%.0f", "%.1f", "%.0f", "%.0f", "%.2f", "%.2f"}
 	feature43Types      = []bool{true, false, true, true, false, true, true}
 )
