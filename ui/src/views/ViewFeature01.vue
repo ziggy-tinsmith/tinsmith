@@ -4,19 +4,19 @@
       <v-card class="mx-2 mt-3 mb-1 px-4 py-0" align="center">
         <v-row>
           <v-col>
-            <v-text-field v-model="dd" :min="0" dense label="D"></v-text-field>
+            <v-text-field v-model="D" :min="0" dense label="D"></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="rr" :min="0" dense label="R"></v-text-field>
+            <v-text-field v-model="R" :min="0" dense label="R"></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="ss" :min="0" dense label="S"></v-text-field>
+            <v-text-field v-model="S" :min="0" dense label="S"></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="ee" :min="0" dense label="E"></v-text-field>
+            <v-text-field v-model="E" :min="0" dense label="E"></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="tt" :min="0" dense label="T"></v-text-field>
+            <v-text-field v-model="T" :min="0" dense label="T"></v-text-field>
           </v-col>
           <v-col>
             <v-dialog v-model="help" persistent>
@@ -53,19 +53,15 @@
           </v-row>
           <v-row>
             <v-col cols="1">◯</v-col>
-            <v-col cols="11">
-              {{ getLL1(feature01Computed()) }}
-              &nbsp;
-              {{ getLL2(feature01Computed()) }}
-            </v-col>
+            <v-col cols="11">{{ getL(feature01Computed()) }}</v-col>
           </v-row>
           <v-row>
             <v-col cols="1">·</v-col>
-            <v-col cols="11">{{ getP(feature01Computed()) }}</v-col>
+            <v-col cols="11">{{ getPoints(feature01Computed()) }}</v-col>
           </v-row>
           <v-row>
             <v-col cols="1">▨</v-col>
-            <v-col cols="11">{{ getA(feature01Computed()) }}</v-col>
+            <v-col cols="11">{{ getArea(feature01Computed()) }}</v-col>
           </v-row>
         </v-container>
       </v-card>
@@ -81,71 +77,62 @@ interface Core {
 }
 
 interface Feature01Computed {
-  s: number;
-  ll1: number;
-  ll2: number;
-  p: number[];
-  a: number;
+  S: number;
+  L: number[];
+  Points: number[];
+  Area: number;
 }
 
 export default Vue.extend({
   name: "ViewFeature01",
 
   data: () => ({
-    dd: "",
-    rr: "",
-    ss: "",
-    ee: "",
-    tt: "",
+    D: "",
+    R: "",
+    S: "",
+    E: "",
+    T: "",
     help: false,
   }),
 
   methods: {
     feature01Computed() {
-      return ((window as unknown) as Core).feature01({
-        dd: parseFloat(this.dd) || NaN,
-        rr: parseFloat(this.rr) || NaN,
-        ss: parseFloat(this.ss) || NaN,
-        ee: parseFloat(this.ee) || NaN,
-        tt: parseFloat(this.tt) || NaN,
-      });
+      return JSON.parse(((window as unknown) as Core).feature01(JSON.stringify({
+        D: parseFloat(this.D) || NaN,
+        R: parseFloat(this.R) || NaN,
+        S: parseFloat(this.S) || NaN,
+        E: parseFloat(this.E) || NaN,
+        T: parseFloat(this.T) || NaN,
+      })));
     },
 
     getS(composite: Feature01Computed): string {
       if (composite != null) {
-        return composite.s.toFixed(1);
+        return composite.S.toFixed(1);
       } else {
         return "";
       }
     },
 
-    getLL1(composite: Feature01Computed): string {
+    getL(composite: Feature01Computed): string {
       if (composite != null) {
-        return composite.ll1.toFixed(0);
+        return composite.L.map((item: number) => item.toFixed(0)).join(", ");
       } else {
         return "";
       }
     },
 
-    getLL2(composite: Feature01Computed): string {
+    getPoints(composite: Feature01Computed): string {
       if (composite != null) {
-        return composite.ll2.toFixed(0);
+        return composite.Points.map((item: number) => item.toFixed(0)).join(", ");
       } else {
         return "";
       }
     },
 
-    getP(composite: Feature01Computed): string {
+    getArea(composite: Feature01Computed): string {
       if (composite != null) {
-        return composite.p.map((item: number) => item.toFixed(0)).join(", ");
-      } else {
-        return "";
-      }
-    },
-
-    getA(composite: Feature01Computed): string {
-      if (composite != null) {
-        return composite.a.toFixed(2);
+        return composite.Area.toFixed(2);
       } else {
         return "";
       }

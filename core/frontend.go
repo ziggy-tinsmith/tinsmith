@@ -3,71 +3,36 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"syscall/js"
 )
 
-func arrayToJS(array []float64) interface{} {
-	result := make([]interface{}, 0)
-	for _, value := range array {
-		result = append(result, value)
+type genericFunction func(map[string]interface{}) map[string]interface{}
+
+func genericWrapper(args []js.Value, function genericFunction) interface{} {
+	arguments := make(map[string]interface{})
+	if fail := json.Unmarshal([]byte(args[0].String()), &arguments); fail == nil {
+		if result, fail := json.Marshal(function(arguments)); fail == nil {
+			return string(result)
+		} else {
+			return nil
+		}
+	} else {
+		return nil
 	}
-	return result
 }
 
-func getValue(object js.Value, field string) (js.Value, error) {
-	value := object.Get(field)
-	if value.IsUndefined() {
-		return value, fmt.Errorf("Value is undefined")
-	}
-	if value.IsNull() {
-		return value, fmt.Errorf("Value is null")
-	}
-	if value.IsNaN() {
-		return value, fmt.Errorf("Value is NaN")
-	}
-	return value, nil
-}
-
-func feature01Wrapped(this js.Value, args []js.Value) interface{} {
-	var dd, rr, ss, ee, tt float64
-	if value, fail := getValue(args[0], "dd"); fail == nil {
-		dd = value.Float()
-	} else {
-		return nil
-	}
-	if value, fail := getValue(args[0], "rr"); fail == nil {
-		rr = value.Float()
-	} else {
-		return nil
-	}
-	if value, fail := getValue(args[0], "ss"); fail == nil {
-		ss = value.Float()
-	} else {
-		return nil
-	}
-	if value, fail := getValue(args[0], "ee"); fail == nil {
-		ee = value.Float()
-	} else {
-		return nil
-	}
-	if value, fail := getValue(args[0], "tt"); fail == nil {
-		tt = value.Float()
-	} else {
-		return nil
-	}
-	s, ll1, ll2, p, a := feature01(dd, rr, ss, ee, tt)
-	result := make(map[string]interface{})
-	result["s"] = s
-	result["ll1"] = ll1
-	result["ll2"] = ll2
-	result["p"] = arrayToJS(p)
-	result["a"] = a
-	return result
+var lut = map[string]genericFunction{
+	"feature01": feature01,
 }
 
 func main() {
 	window := js.Global().Get("window")
-	window.Set("feature01", js.FuncOf(feature01Wrapped))
+	for name := range lut {
+		function, _ := lut[name]
+		window.Set(name, js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+			return genericWrapper(args, function)
+		}))
+	}
 	select {}
 }
