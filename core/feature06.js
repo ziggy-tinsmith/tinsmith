@@ -19,7 +19,7 @@ function feature06_core(parameters) {
   var r = D / 2.0;
   var B = A / 2.0;
   var L = r * Math.tan(B * Rad);
-  result["S"] = 2.0 * Math.PI * r / T
+  result["S"] = 2.0 * Math.PI * r / T;
   result["L"] = [
     2.0 * Math.PI * r,
     2.0 * Math.PI * r + U,
