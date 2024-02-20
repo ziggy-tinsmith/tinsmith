@@ -32,7 +32,7 @@ func feature05(arguments map[string]interface{}) map[string]interface{} {
 	p := make([]interface{}, 0)
 	for X := float64(0); X <= T/2.0; X += 1.0 {
 		F := X * (360.0 / T)
-		Q := (R-r*math.Cos(F*Rad))*math.Tan((B+E)*Rad) + E
+		Q := (R-r*math.Cos(F*Rad))*math.Tan(B*Rad) + E
 		p = append(p, Q)
 	}
 	result["Points"] = p
