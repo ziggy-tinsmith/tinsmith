@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-func feature04(aa float64) (mm float64) {
+func feature04A(aa float64) (mm float64) {
 	Rad := math.Pi / 180.0
 	cc := 400.0
 	bb := aa / 2.0
