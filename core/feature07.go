@@ -4,15 +4,25 @@ import (
 	"math"
 )
 
-func feature07(dd, aa, ee float64) (rr1, rr2, cc, ss float64) {
+func feature07(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "A", "E"})
+	if parameters == nil {
+		return nil
+	}
+	D := getParameter(parameters, "D")
+	A := getParameter(parameters, "A")
+	E := getParameter(parameters, "E")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	r := dd / 2.0
-	bb := math.Atan(r/aa) / Rad
-	uu := 1.0 / math.Sin(bb*Rad)
-	vv := 180.0 * math.Sin(bb*Rad)
-	rr1 = r * uu
-	rr2 = rr1 + ee
-	cc = 2.0 * r * uu * math.Sin((vv/3.0)*Rad)
-	ss = 2.0 * r * uu * math.Sin(vv*Rad)
-	return
+	r := D / 2.0
+	B := math.Atan(r/A) / Rad
+	U := 1.0 / math.Sin(B*Rad)
+	V := 180.0 * math.Sin(B*Rad)
+	result["Radius"] = []interface{}{
+		r * U,
+		r*U + E,
+	}
+	result["C"] = 2.0 * r * U * math.Sin((V/3.0)*Rad)
+	result["S"] = 2.0 * r * U * math.Sin(V*Rad)
+	return result
 }
