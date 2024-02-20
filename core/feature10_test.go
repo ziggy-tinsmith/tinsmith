@@ -4,37 +4,14 @@ import (
 	"testing"
 )
 
-func feature10Tester(t *testing.T, kk, gg, ll, ee, tt, ett float64, srOK, brOK, scOK, bcOK, zmksOK, zmgsOK, wllOK, ddOK, aOK float64) {
-	sr, br, sc, bc, zmks, zmgs, wll, dd, a := feature10(kk, gg, ll, ee, tt, ett)
-	if !equalsFormatted(sr, srOK, "%.0f") {
-		t.Errorf("The value 'sr' is incorrect (got: %v, expected: %v)!", sr, srOK)
-	}
-	if !equalsFormatted(br, brOK, "%.0f") {
-		t.Errorf("The value 'br' is incorrect (got: %v, expected: %v)!", br, brOK)
-	}
-	if !equalsFormatted(sc, scOK, "%.0f") {
-		t.Errorf("The value 'sc' is incorrect (got: %v, expected: %v)!", sc, scOK)
-	}
-	if !equalsFormatted(bc, bcOK, "%.0f") {
-		t.Errorf("The value 'bc' is incorrect (got: %v, expected: %v)!", bc, bcOK)
-	}
-	if !equalsFormatted(zmks, zmksOK, "%.1f") {
-		t.Errorf("The value 'zmks' is incorrect (got: %v, expected: %v)!", zmks, zmksOK)
-	}
-	if !equalsFormatted(zmgs, zmgsOK, "%.1f") {
-		t.Errorf("The value 'zmgs' is incorrect (got: %v, expected: %v)!", zmgs, zmgsOK)
-	}
-	if !equalsFormatted(wll, wllOK, "%.1f") {
-		t.Errorf("The value 'wll' is incorrect (got: %v, expected: %v)!", wll, wllOK)
-	}
-	if !equalsFormatted(dd, ddOK, "%.1f") {
-		t.Errorf("The value 'dd' is incorrect (got: %v, expected: %v)!", dd, ddOK)
-	}
-	if !equalsFormatted(a, aOK, "%.2f") {
-		t.Errorf("The value 'a' is incorrect (got: %v, expected: %v)!", a, aOK)
-	}
-}
+var (
+	feature10Names      = []string{"SR", "BR", "SC", "BC", "ZMKS", "ZMGS", "WLL", "D", "Area"}
+	feature10Accuracies = []string{"%.0f", "%.0f", "%.0f", "%.0f", "%.1f", "%.1f", "%.1f", "%.1f", "%.2f"}
+	feature10Types      = []bool{true, true, true, true, true, true, true, true, true}
+)
 
 func Test01Feature10(t *testing.T) {
-	feature10Tester(t, 200, 400, 100, 10, 16, 20, 131, 293, 36, 81, 29.1, 64.9, 161.4, 167.2, 0.13)
+	arguments := map[string]interface{}{"K": 200, "G": 400, "L": 100, "E": 10, "T": 16, "ET": 20}
+	expected := map[string]interface{}{"SR": 131, "BR": 293, "SC": 36, "BC": 81, "ZMKS": 29.1, "ZMGS": 64.9, "WLL": 161.4, "D": 167.2, "Area": 0.13}
+	genericTester(t, feature10(arguments), expected, feature10Names, feature10Accuracies, feature10Types)
 }

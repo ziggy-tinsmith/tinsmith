@@ -4,28 +4,39 @@ import (
 	"math"
 )
 
-func feature10(kk, gg, ll, ee, tt, ett float64) (sr, br, sc, bc, zmks, zmgs, wll, dd, a float64) {
+func feature10(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"K", "G", "L", "E", "T", "ET"})
+	if parameters == nil {
+		return nil
+	}
+	K := getParameter(parameters, "K")
+	G := getParameter(parameters, "G")
+	L := getParameter(parameters, "L")
+	E := getParameter(parameters, "E")
+	T := getParameter(parameters, "T")
+	ET := getParameter(parameters, "ET")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	r := kk / 2.0
-	rr := gg / 2.0
-	bb := math.Atan((rr-r)/ll) / Rad
-	nn := r - ee*math.Sin(bb*Rad)
-	mm := rr + ee*math.Sin(bb*Rad)
-	uu := 1 / math.Sin(bb*Rad)
-	vv := (180.0 / tt) * math.Sin(bb*Rad)
-	sr = nn * uu
-	br = mm * uu
-	sc = 2.0 * nn * uu * math.Sin(vv*Rad)
-	bc = 2.0 * mm * uu * math.Sin(vv*Rad)
-	vv = (180.0 / ett) * math.Sin(bb*Rad)
-	pp := mm*uu - nn*uu
-	hh := pp * math.Cos(vv*Rad)
-	aa := (mm*uu + nn*uu) * math.Sin(vv*Rad)
-	theta := math.Atan(aa/hh) / Rad
-	dd = hh * (1.0 / math.Cos(theta*Rad))
-	zmks = 2.0 * nn * uu * math.Sin(vv*Rad)
-	zmgs = 2.0 * mm * uu * math.Sin(vv*Rad)
-	wll = pp
-	a = math.Pi * (rr + r) * math.Sqrt(math.Pow(ll, 2.0)+math.Pow(rr-r, 2.0)) * (1.0 / math.Pow(10.0, 6.0))
-	return
+	r := K / 2.0
+	R := G / 2.0
+	B := math.Atan((R-r)/L) / Rad
+	N := r - E*math.Sin(B*Rad)
+	M := R + E*math.Sin(B*Rad)
+	U := 1 / math.Sin(B*Rad)
+	V := (180.0 / T) * math.Sin(B*Rad)
+	result["SR"] = N * U
+	result["BR"] = M * U
+	result["SC"] = 2.0 * N * U * math.Sin(V*Rad)
+	result["BC"] = 2.0 * M * U * math.Sin(V*Rad)
+	V = (180.0 / ET) * math.Sin(B*Rad)
+	P := M*U - N*U
+	H := P * math.Cos(V*Rad)
+	A := (M*U + N*U) * math.Sin(V*Rad)
+	theta := math.Atan(A/H) / Rad
+	result["D"] = H * (1.0 / math.Cos(theta*Rad))
+	result["ZMKS"] = 2.0 * N * U * math.Sin(V*Rad)
+	result["ZMGS"] = 2.0 * M * U * math.Sin(V*Rad)
+	result["WLL"] = P
+	result["Area"] = math.Pi * (R + r) * math.Sqrt(math.Pow(L, 2.0)+math.Pow(R-r, 2.0)) * (1.0 / math.Pow(10.0, 6.0))
+	return result
 }
