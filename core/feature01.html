@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature01: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature01",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Bend 90° - Bogen 90° - Bocht 90° - Koleno 90°</h1>
+  <script src="utilities.js"></script>
+  <script src="feature01.js"></script>
+  <script src="feature01_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "R", "S", "E", "T"],
     parametersLabels: { D: "⌀ D", R: "⎋ R", S: "┇ S", E: "⬒ E", T: "⧻ T" },
     resultsKeys: ["S", "L", "Points", "Area"],
     resultsLabels: { S: "∡ S", L: "◯ L", Points: "⦙", Area: "▨" },
     resultsDigits: { S: 1, L: 0, Points: 0, Area: 2 },
-    coreFunction: ((window as unknown) as Core).feature01,
-    blueprintName: "feature01",
-  }),
-});
-</script>
+    coreFunction: feature01,
+  });
+  </script>
+  <img src="feature01.png"/>
+</body>
+
+</html>
+

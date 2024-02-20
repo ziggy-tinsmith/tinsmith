@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature31: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature31",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Transformer Ellipse-Rectangle - Ubergang Ellipse-Rechteck - Overgang Ellipse-Rechthoek - Prelaz Elipsa-Pravougaonik</h1>
+  <script src="utilities.js"></script>
+  <script src="feature31.js"></script>
+  <script src="feature31_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["A", "B", "H", "D", "R", "S", "Z", "T"],
     parametersLabels: { A: "⟷ A", B: "⟷ B", H: "⍐ H", D: "⌀◜ D", R: "⎋ R", S: "┇ S", Z: "⬒ E", T: "⧻ T" },
     resultsKeys: ["S", "F1", "PointsA", "F2", "PointsB", "F3", "OS", "L", "Points"],
     resultsLabels: { S: "S", F1: "F1", PointsA: "PointsA", F2: "F2", PointsB: "PointsB", F3: "F3", OS: "OS", L: "L", Points: "⦙" },
     resultsDigits: { S: 1, F1: 0, PointsA: 0, F2: 0, PointsB: 0, F3: 0, OS: 1, L: 0, Points: 0 },
-    coreFunction: ((window as unknown) as Core).feature31,
-    blueprintName: "feature31",
-  }),
-});
-</script>
+    coreFunction: feature31,
+  });
+  </script>
+  <img src="feature31.png"/>
+</body>
+
+</html>
+

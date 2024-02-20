@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature04a: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature04A",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Angle A - Winkel A - Hoek A - Ugao (Kut) A</h1>
+  <script src="utilities.js"></script>
+  <script src="feature04a.js"></script>
+  <script src="feature04a_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["A"],
     parametersLabels: { A: "∠ A" },
     resultsKeys: ["M"],
     resultsLabels: { M: "⟷⧻ M" },
     resultsDigits: { M: 0 },
-    coreFunction: ((window as unknown) as Core).feature04a,
-    blueprintName: "feature04",
-  }),
-});
-</script>
+    coreFunction: feature04a,
+  });
+  </script>
+  <img src="feature04a.png"/>
+</body>
+
+</html>
+

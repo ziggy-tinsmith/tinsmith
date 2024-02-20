@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature18: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature18",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Oblique Tee - Stutzen - Stut - Štucna</h1>
+  <script src="utilities.js"></script>
+  <script src="feature18.js"></script>
+  <script src="feature18_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "A", "T"],
     parametersLabels: { D: "⌀| D", A: "∠ A", T: "⧻ T" },
     resultsKeys: ["S", "L", "Points", "B", "H"],
     resultsLabels: { S: "∡ S", L: "◯ L", Points: "⦙", B: "◜ B", H: "◜ H" },
     resultsDigits: { S: 1, L: 0, Points: 0, B: 0, H: 0 },
-    coreFunction: ((window as unknown) as Core).feature18,
-    blueprintName: "feature18",
-  }),
-});
-</script>
+    coreFunction: feature18,
+  });
+  </script>
+  <img src="feature18.png"/>
+</body>
+
+</html>
+

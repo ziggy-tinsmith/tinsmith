@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature56: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature56",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Right Cone Cut Obliquely - Trichter schräg geschnitten - Verloop Schuin Gesneden - Trihter Koso Sečeni</h1>
+  <script src="utilities.js"></script>
+  <script src="feature56.js"></script>
+  <script src="feature56_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "A", "E", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⟷ L", A: "⟷ A", E: "⬒ E", T: "⧻ T" },
     resultsKeys: ["SR", "BR", "KS", "GS", "PointsL"],
     resultsLabels: { SR: "⤓ R", BR: "⤒ R", KS: "⤓∡ S", GS: "⤒∡ S", PointsL: "⦙ L" },
     resultsDigits: { SR: 0, BR: 0, KS: 1, GS: 1, PointsL: 0 },
-    coreFunction: ((window as unknown) as Core).feature56,
-    blueprintName: "feature56",
-  }),
-});
-</script>
+    coreFunction: feature56,
+  });
+  </script>
+  <img src="feature56.png"/>
+</body>
+
+</html>
+

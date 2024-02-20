@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature47: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature47",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Siphon Tube Conical No 3 - Hosenstuck konisch No 3 - Broekstuk Konisch No 3 - Gaće (Hlače) Konusne No 3</h1>
+  <script src="utilities.js"></script>
+  <script src="feature47.js"></script>
+  <script src="feature47_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "V", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⍐ L", V: "⟷ V", T: "⧻ T" },
     resultsKeys: ["ZMKS", "ZMGS", "KR", "GR", "RA", "L1", "L2", "M1", "M2"],
     resultsLabels: { ZMKS: "⤓∡ K S", ZMGS: "⤒∡ G S", KR: "⦙ K R", GR: "⦙ G R", RA: "R A", L1: "⦙ L 1", L2: "⦙ L 2", M1: "M 1", M2: "M 2" },
     resultsDigits: { ZMKS: 1, ZMGS: 1, KR: 0, GR: 0, RA: 0, L1: 0, L2: 0, M1: 0, M2: 0 },
-    coreFunction: ((window as unknown) as Core).feature47,
-    blueprintName: "feature47",
-  }),
-});
-</script>
+    coreFunction: feature47,
+  });
+  </script>
+  <img src="feature47.png"/>
+</body>
+
+</html>
+

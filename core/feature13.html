@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature13: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature13",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Cone Cut Off - Trichter abgeflacht - Verloop Afgevlakt - Trihter Srubljen</h1>
+  <script src="utilities.js"></script>
+  <script src="feature13.js"></script>
+  <script src="feature13_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "Z", "S", "E"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⍐ L", Z: "⟷ ⤓⌀ B", S: "⟷ ⤒⌀ A", E: "⬒ E" },
     resultsKeys: ["L", "FK", "FG", "T", "D", "R", "RK", "RG", "CK", "CG"],
     resultsLabels: { L: "L", FK: "F K", FG: "F G", T: "T", D: "D", R: "R", RK: "R K", RG: "R G", CK: "C K", CG: "C G" },
     resultsDigits: { L: 2, FK: 2, FG: 2, T: 2, D: 2, R: 2, RK: 2, RG: 2, CK: 2, CG: 2 },
-    coreFunction: ((window as unknown) as Core).feature13,
-    blueprintName: "feature13",
-  }),
-});
-</script>
+    coreFunction: feature13,
+  });
+  </script>
+  <img src="feature13.png"/>
+</body>
+
+</html>
+

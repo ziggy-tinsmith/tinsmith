@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature48: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature48",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Siphon Tube Circle-Rectangle No 1 - Hosenstuck Kreis-Rechteck No 1 - Broekstuk Cirkel-Rechthoek No 1 - Gaće (Hlače) Krug-Pravougaonik No 1</h1>
+  <script src="utilities.js"></script>
+  <script src="feature48.js"></script>
+  <script src="feature48_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "A", "B", "L", "V", "T"],
     parametersLabels: { D: "⌀ D", A: "⟷ A", B: "⟷ B", L: "⍐ L", V: "⟷ V", T: "⧻ T" },
     resultsKeys: ["S", "F1", "PointsA", "PointsB", "F2", "PointsM"],
     resultsLabels: { S: "∡ S", F1: "F 1", PointsA: "⦙ P A", PointsB: "⦙ P B", F2: "F 2", PointsM: "⦙ P M" },
     resultsDigits: { S: 1, F1: 0, PointsA: 0, PointsB: 0, F2: 0, PointsM: 0 },
-    coreFunction: ((window as unknown) as Core).feature48,
-    blueprintName: "feature48",
-  }),
-});
-</script>
+    coreFunction: feature48,
+  });
+  </script>
+  <img src="feature48.png"/>
+</body>
+
+</html>
+

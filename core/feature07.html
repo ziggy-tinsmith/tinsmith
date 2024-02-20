@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature07: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature07",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Lid - Deckel - Puntkop - Deklo</h1>
+  <script src="utilities.js"></script>
+  <script src="feature07.js"></script>
+  <script src="feature07_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "A", "E"],
     parametersLabels: { D: "⌀ D", A: "⟷ A", E: "⬒ E" },
     resultsKeys: ["Radius", "C", "S"],
     resultsLabels: { Radius: "⎋", C: "⌓", S: "◜" },
     resultsDigits: { Radius: 0, C: 0, S: 0 },
-    coreFunction: ((window as unknown) as Core).feature07,
-    blueprintName: "feature07",
-  }),
-});
-</script>
+    coreFunction: feature07,
+  });
+  </script>
+  <img src="feature07.png"/>
+</body>
+
+</html>
+

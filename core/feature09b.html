@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature09b: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature09B",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Flattening B - Abflachung B - Afvlaking B - Srubljenje B</h1>
+  <script src="utilities.js"></script>
+  <script src="feature09b.js"></script>
+  <script src="feature09b_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "A"],
     parametersLabels: { D: "⌀ D", A: "⟷ A" },
     resultsKeys: ["F", "R", "D", "T", "L", "L1", "L2", "L3"],
     resultsLabels: { F: "∥ F", R: "⎋ R", D: "⟷ D", T: "⍆ T", L: "⍐ L", L1: "⍐ L1", L2: "⍐ L2", L3: "⍐ L3" },
     resultsDigits: { F: 0, R: 0, D: 0, T: 0, L: 0, L1: 0, L2: 0, L3: 0 },
-    coreFunction: ((window as unknown) as Core).feature09b,
-    blueprintName: "feature09",
-  }),
-});
-</script>
+    coreFunction: feature09b,
+  });
+  </script>
+  <img src="feature09b.png"/>
+</body>
+
+</html>
+

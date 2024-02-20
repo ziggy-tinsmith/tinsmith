@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature43: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature43",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Sphere - Kugel - Kogel - Kugla</h1>
+  <script src="utilities.js"></script>
+  <script src="feature43.js"></script>
+  <script src="feature43_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "I", "K", "S", "Z", "T"],
     parametersLabels: { D: "⌀ D", I: "⟷⧚ I", K: "⌀⚬ D", S: "┇ S", Z: "⬒ E", T: "⧻ T" },
     resultsKeys: ["SS", "L", "S", "LL", "Points", "Area", "VL"],
     resultsLabels: { SS: "S", L: "L", S: "∡ S", LL: "⟷ L", Points: "⦙", Area: "▨", VL: "⟐ L" },
     resultsDigits: { SS: 0, L: 0, S: 1, LL: 0, Points: 0, Area: 2, VL: 2 },
-    coreFunction: ((window as unknown) as Core).feature43,
-    blueprintName: "feature43",
-  }),
-});
-</script>
+    coreFunction: feature43,
+  });
+  </script>
+  <img src="feature43.png"/>
+</body>
+
+</html>
+

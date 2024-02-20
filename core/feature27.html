@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature27: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature27",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Transformer Circle-Circle - Ubergang Kreis-Kreis - Overgang Cirkel-Cirkel - Prelaz Krug-Krug</h1>
+  <script src="utilities.js"></script>
+  <script src="feature27.js"></script>
+  <script src="feature27_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "V", "Z", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⍐ L", V: "⟷ V", Z: "⬒ E", T: "⧻ T" },
     resultsKeys: ["KS", "GS", "R1", "R2", "L1", "L2"],
     resultsLabels: { KS: "⤓∡ K S", GS: "⤒∡ G S", R1: "⦙ R 1", R2: "⦙ R 2", L1: "⦙ L 1", L2: "⦙ L 2" },
     resultsDigits: { KS: 1, GS: 1, R1: 0, R2: 0, L1: 0, L2: 0 },
-    coreFunction: ((window as unknown) as Core).feature27,
-    blueprintName: "feature27",
-  }),
-});
-</script>
+    coreFunction: feature27,
+  });
+  </script>
+  <img src="feature27.png"/>
+</body>
+
+</html>
+

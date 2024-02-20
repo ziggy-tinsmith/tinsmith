@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature50: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature50",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>50BOKO</h1>
+  <script src="utilities.js"></script>
+  <script src="feature50.js"></script>
+  <script src="feature50_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "H", "S", "A", "E", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", H: "⟷ L", S: "┇ S", A: "∠ A", E: "⬒ E", T: "⧻ T" },
     resultsKeys: ["SR", "BR", "KS", "GS", "D", "PointsR1", "PointsR2", "PointsR3", "PointsR4", "PointsR5", "PointsR6"],
     resultsLabels: { SR: "SR", BR: "BR", KS: "KS", GS: "GS", D: "D", PointsR1: "PointsR1", PointsR2: "PointsR2", PointsR3: "PointsR3", PointsR4: "PointsR4", PointsR5: "PointsR5", PointsR6: "PointsR6" },
     resultsDigits: { SR: 0, BR: 0, KS: 1, GS: 1, D: 0, PointsR1: 0, PointsR2: 0, PointsR3: 0, PointsR4: 0, PointsR5: 0, PointsR6: 0 },
-    coreFunction: ((window as unknown) as Core).feature50,
-    blueprintName: "feature50",
-  }),
-});
-</script>
+    coreFunction: feature50,
+  });
+  </script>
+  <img src="feature50.png"/>
+</body>
+
+</html>
+

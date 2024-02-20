@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature14: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature14",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Oblique Cone - Trichter einseitig - Verloop Excentrisch - Trihter Jednostrani</h1>
+  <script src="utilities.js"></script>
+  <script src="feature14.js"></script>
+  <script src="feature14_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "Z", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⍐ L", Z: "⬒ E", T: "⧻ T" },
     resultsKeys: ["SC", "BC", "R2", "R1", "L1", "L2", "Area"],
     resultsLabels: { SC: "⤓∡", BC: "⤒∡", R2: "⦙ R 2", R1: "⦙ R 1", L1: "⦙ L 1", L2: "⦙ L 2", Area: "▨" },
     resultsDigits: { SC: 1, BC: 1, R2: 0, R1: 0, L1: 0, L2: 0, Area: 2 },
-    coreFunction: ((window as unknown) as Core).feature14,
-    blueprintName: "feature14",
-  }),
-});
-</script>
+    coreFunction: feature14,
+  });
+  </script>
+  <img src="feature14.png"/>
+</body>
+
+</html>
+

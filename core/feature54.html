@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature54: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature54",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Socket Piece Conical No 4 - Stutzen auf Trichter No 4 - T-Stuk op Verloop No 4 - Štucna na Trihter No 4</h1>
+  <script src="utilities.js"></script>
+  <script src="feature54.js"></script>
+  <script src="feature54_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "A", "N", "M", "P", "V", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⟷ L", A: "∠ A", N: "⤓⌀ KD'", M: "⤒⌀ GD'", P: "⟷ L'", V: "⟷ V", T: "⧻ T" },
     resultsKeys: ["SR", "BR", "KS", "GS", "PointsL"],
     resultsLabels: { SR: "⤓ R", BR: "⤒ R", KS: "⤓∡ S", GS: "⤒∡ S", PointsL: "⦙ L" },
     resultsDigits: { SR: 0, BR: 0, KS: 1, GS: 1, PointsL: 0 },
-    coreFunction: ((window as unknown) as Core).feature54,
-    blueprintName: "feature54",
-  }),
-});
-</script>
+    coreFunction: feature54,
+  });
+  </script>
+  <img src="feature54.png"/>
+</body>
+
+</html>
+

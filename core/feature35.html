@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature35: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature35",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Vessel Head Korbbogen - Behälter Kopf Korbbogen - Bolle Kop Korbbogen - Cepelin Kapa Korbbogen</h1>
+  <script src="utilities.js"></script>
+  <script src="feature35.js"></script>
+  <script src="feature35_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["D", "I", "K", "S", "E", "U", "A", "B"],
     parametersLabels: { D: "⌀ D", I: "⟷⧚ I", K: "⌀⚬ D", S: "┇ S", E: "⬒ E", U: "∥ N", A: "⧻ T A", B: "⧻ T B" },
     resultsKeys: ["SS", "LA", "LB", "ZMSA", "ZMSB", "L", "H", "PointsA", "PointsB", "Area", "VL"],
     resultsLabels: { SS: "S", LA: "⟷ L A", LB: "⟷ L B", ZMSA: "∡ S A", ZMSB: "∡ S B", L: "⟷ L", H: "⍐ H", PointsA: "⦙ P A", PointsB: "⦙ P B", Area: "▨", VL: "⟐ L" },
     resultsDigits: { SS: 0, LA: 0, LB: 0, ZMSA: 1, ZMSB: 1, L: 0, H: 0, PointsA: 0, PointsB: 0, Area: 2, VL: 2 },
-    coreFunction: ((window as unknown) as Core).feature35,
-    blueprintName: "feature35",
-  }),
-});
-</script>
+    coreFunction: feature35,
+  });
+  </script>
+  <img src="feature35.png"/>
+</body>
+
+</html>
+

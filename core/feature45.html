@@ -1,38 +1,43 @@
-<template>
-  <Feature
-    :parametersKeys="parametersKeys"
-    :parametersLabels="parametersLabels"
-    :resultsKeys="resultsKeys"
-    :resultsLabels="resultsLabels"
-    :resultsDigits="resultsDigits"
-    :coreFunction="coreFunction"
-    :blueprintName="blueprintName"
-  />
-</template>
+<!DOCTYPE html>
+<html lang="en">
 
-<script lang="ts">
-import Vue from "vue";
-import Feature from "@/components/Feature.vue";
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Tinsmith App; Blechabwicklungsprogramme;" />
+  <title>Tinsmith</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
 
-interface Core {
-  feature45: Function;
-}
+    img {
+      max-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
 
-export default Vue.extend({
-  name: "ViewFeature45",
-
-  components: {
-    Feature,
-  },
-
-  data: () => ({
+<body>
+  <noscript>
+    <strong>This application does not work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <h1>Siphon Tube Conical No 1 - Hosenstuck konisch No 1 - Broekstuk Konisch No 1 - Gaće (Hlače) Konusne No 1</h1>
+  <script src="utilities.js"></script>
+  <script src="feature45.js"></script>
+  <script src="feature45_test.js"></script>
+  <script>
+  configure({
     parametersKeys: ["K", "G", "L", "V", "T"],
     parametersLabels: { K: "⤓⌀ KD", G: "⤒⌀ GD", L: "⍐ L", V: "⟷ V", T: "⧻ T" },
     resultsKeys: ["KR", "GR", "ZMKS", "ZMGS", "PointsR2", "PointsR1", "PointsRA", "SA", "LA", "PointsA", "SC", "LC", "Points"],
     resultsLabels: { KR: "K R", GR: "G R", ZMKS: "⤓∡ K S", ZMGS: "⤒∡ G S", PointsR2: "⦙ R 2", PointsR1: "⦙ R 1", PointsRA: "⦙ R A", SA: "∡ S A", LA: "◯ L A", PointsA: "⦙ A", SC: "∡ S C", LC: "◯ L C", Points: "⦙" },
     resultsDigits: { KR: 0, GR: 0, ZMKS: 1, ZMGS: 1, PointsR2: 0, PointsR1: 0, PointsRA: 0, SA: 1, LA: 0, PointsA: 0, SC: 1, LC: 0, Points: 0 },
-    coreFunction: ((window as unknown) as Core).feature45,
-    blueprintName: "feature45",
-  }),
-});
-</script>
+    coreFunction: feature45,
+  });
+  </script>
+  <img src="feature45.png"/>
+</body>
+
+</html>
+
