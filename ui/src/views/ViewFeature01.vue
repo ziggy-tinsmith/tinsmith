@@ -79,6 +79,14 @@ interface ResultEntry {
   value: string;
 }
 
+function initiateParameters(keys: string[]): ParametersEntries {
+  const initiated: ParametersEntries = {};
+  keys.forEach((key: string) => {
+    initiated[key] = "";
+  });
+  return initiated;
+}
+
 function prepareParameters(unprepared: ParametersEntries): Parameters {
   const prepared: Parameters = {};
   Object.keys(unprepared).forEach((key: string) => {
@@ -128,13 +136,7 @@ export default Vue.extend({
   data: () => ({
     parametersKeys: ["D", "R", "S", "E", "T"],
     parametersLabels: { D: "D", R: "R", S: "S", E: "E", T: "T" },
-    parameters: {
-      D: "",
-      R: "",
-      S: "",
-      E: "",
-      T: "",
-    },
+    parameters: initiateParameters(["D", "R", "S", "E", "T"]),
     resultsKeys: ["S", "L", "Points", "Area"],
     resultsLabels: { S: "‡", L: "◯", Points: "·", Area: "▨" },
     resultsDigits: { S: 1, L: 0, Points: 0, Area: 2 },
