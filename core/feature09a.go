@@ -4,33 +4,47 @@ import (
 	"math"
 )
 
-func feature09A(dd, aa, ll, tt float64) (ff1, ff2, hh, ss float64, p []float64, pp1ll1, pp1ll2, pp2ll1, pp2ll2 float64) {
+func feature09A(arguments map[string]interface{}) map[string]interface{} {
+	parameters := extractParameters(arguments, []string{"D", "A", "L", "T"})
+	if parameters == nil {
+		return nil
+	}
+	D := getParameter(parameters, "D")
+	A := getParameter(parameters, "A")
+	L := getParameter(parameters, "L")
+	T := getParameter(parameters, "T")
+	result := make(map[string]interface{})
 	Rad := math.Pi / 180.0
-	uu := 30.0
-	if dd > 300.0 {
-		uu = 40.0
+	U := 30.0
+	if D > 300.0 {
+		U = 40.0
 	}
-	r := dd / 2.0
-	ee := math.Acos((r-aa)/r) / Rad
-	gg := r * math.Sin(ee*Rad)
-	pp := math.Pi / 180.0
-	ii := tt / 2.0
-	bb := r * ee * pp
-	ff1 = gg
-	ff2 = 2.0 * ff1
-	hh = math.Sqrt(math.Pow(ll, 2.0) + math.Pow(aa, 2.0))
-	ss = bb / ii
-	p = make([]float64, 0)
-	for xx := float64(0); xx <= tt/2.0; xx += 1.0 {
-		// ff := xx * (360.0 / tt)
-		qq := math.Sqrt(math.Pow(r*math.Cos(ee*Rad)-r*math.Cos(xx*(ee/ii)*Rad), 2.0) + math.Pow(r*math.Sin(ee*Rad)-r*math.Sin(xx*(ee/ii)*Rad), 2.0) + math.Pow(ll, 2.0))
-		p = append(p, qq)
+	r := D / 2.0
+	E := math.Acos((r-A)/r) / Rad
+	G := r * math.Sin(E*Rad)
+	P := math.Pi / 180.0
+	I := T / 2.0
+	B := r * E * P
+	result["F1"] = G
+	result["F2"] = 2.0 * G
+	result["H"] = math.Sqrt(math.Pow(L, 2.0) + math.Pow(A, 2.0))
+	result["S"] = B / I
+	p := make([]interface{}, 0)
+	for X := float64(0); X <= T/2.0; X += 1.0 {
+		// F := X * (360.0 / T)
+		Q := math.Sqrt(math.Pow(r*math.Cos(E*Rad)-r*math.Cos(X*(E/I)*Rad), 2.0) + math.Pow(r*math.Sin(E*Rad)-r*math.Sin(X*(E/I)*Rad), 2.0) + math.Pow(L, 2.0))
+		p = append(p, Q)
 	}
-	vv := 2.0 * math.Pi * r
-	ww := uu / 2.0
-	pp1ll1 = (1.0/4.0)*vv - bb + ww
-	pp1ll2 = (3.0/4.0)*vv - bb + ww
-	pp2ll1 = (1.0/2.0)*vv - bb + ww
-	pp2ll2 = (1.0/2.0)*vv - bb + ww
-	return
+	result["Points"] = p
+	V := 2.0 * math.Pi * r
+	W := U / 2.0
+	result["P1L"] = []interface{}{
+		(1.0/4.0)*V - B + W,
+		(3.0/4.0)*V - B + W,
+	}
+	result["P2L"] = []interface{}{
+		(1.0/2.0)*V - B + W,
+		(1.0/2.0)*V - B + W,
+	}
+	return result
 }
